@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('aquasurge_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaSurge Luxury Ocean Club | Ride the Waves in Pure Luxury | Laguna Bay</title>
+  <meta name="description" content="Laguna Bay's premier 5-star beach water sports & luxury ocean club. 300hp supercharged Sea-Doos, Seabob superyacht toys, 500ft royal parasailing, and sunset catamaran cruises.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/images/logo-square.jpg">
+
+  <!-- Google Fonts: Luxury Serif & Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            heading: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
+            luxury: ['Playfair Display', 'Georgia', 'serif'],
+            crest: ['Cinzel', 'serif'],
+          },
+          colors: {
+            gold: {
+              300: '#FBF5B7',
+              400: '#F5D061',
+              500: '#D4AF37',
+              600: '#AA771C',
+            },
+            ocean: {
+              950: '#030712',
+              900: '#07101F',
+              800: '#0B1D38',
+              700: '#173C6C',
+              600: '#1E5496',
+            },
+            aqua: {
+              500: '#00C9FF',
+              400: '#00F2FE',
+              600: '#0284C7',
+            },
+            coral: {
+              500: '#FF5A36',
+              400: '#FF7E5F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="antialiased selection:bg-amber-400 selection:text-slate-950">
+
+  <!-- =========================================================================
+       HEADER & NAVIGATION
+       ========================================================================= -->
+  <header class="main-header flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex items-center justify-between">
+      
+      <!-- Logo: High-Octane Luxury Crest -->
+      <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 group" aria-label="AquaSurge Luxury Ocean Club Home">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-amber-400 via-yellow-300 to-cyan-400 p-0.5 shadow-md group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden">
+          <div class="brand-logo-frame w-full h-full rounded-[10px] overflow-hidden flex items-center justify-center">
+            <img src="assets/images/logo-square.jpg" alt="AquaSurge Jet Ski Crest" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-300">
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="brand-text-title font-heading font-black text-lg sm:text-xl tracking-tight leading-none">
+            AQUA<span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 dark:from-amber-400 dark:via-yellow-200 dark:to-amber-500">SURGE</span>
+          </span>
+          <span class="brand-text-subtitle text-[8px] uppercase font-crest font-bold tracking-[0.16em] mt-0.5">
+            Luxury Ocean Club • 5-Star
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-5 xl:gap-6 flex-nowrap whitespace-nowrap">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="activities.html" class="nav-link">Activities & Fleet</a>
+        <a href="safety.html" class="nav-link">Safety Standards</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+
+      <!-- Right Action Controls (Resized Proportions) -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        
+        <!-- Wishlist Button -->
+        <button type="button" onclick="AquaSurge.openWishlistDrawer()" class="icon-btn" aria-label="View Saved Activities" title="Your VIP Wishlist">
+          <i class="bi bi-heart text-base"></i>
+          <span class="wishlist-count-badge absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center shadow" style="display: none;">0</span>
+        </button>
+
+        <!-- Theme Toggle (Light / Dark) -->
+        <button type="button" class="theme-toggle-btn icon-btn" aria-label="Toggle Theme Mode" title="Toggle Light/Dark Theme">
+          <i class="bi bi-moon-stars-fill theme-toggle-icon text-base"></i>
+        </button>
+
+        <!-- RTL Toggle -->
+        <button type="button" class="rtl-toggle-btn icon-btn px-1.5 text-[11px] font-bold" aria-label="Toggle Direction" title="Switch RTL / LTR Layout">
+          <span class="rtl-status-label">RTL</span>
+        </button>
+
+        <!-- Book VIP Experience CTA (Desktop) -->
+        <a href="booking.html" class="hidden sm:inline-flex btn-primary text-xs py-2 px-3.5 rounded-full font-bold">
+          <i class="bi bi-gem"></i>
+          <span>Book VIP</span>
+        </a>
+
+        <!-- Mobile Hamburger Button -->
+        <button type="button" class="mobile-menu-toggle icon-btn lg:hidden ml-0.5" aria-label="Open Mobile Menu">
+          <i class="bi bi-list text-xl"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Slide-out Drawer -->
+  <div class="drawer-backdrop"></div>
+  <aside class="mobile-drawer p-6" aria-label="Mobile Navigation">
+    <div class="flex items-center justify-between pb-6 border-b border-slate-200 dark:border-slate-800">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 to-cyan-400 p-0.5 shadow-md flex items-center justify-center overflow-hidden">
+          <div class="w-full h-full bg-[#050C18] rounded-[9px] overflow-hidden flex items-center justify-center">
+            <img src="assets/images/logo-square.jpg" alt="AquaSurge Jet Ski Crest" class="w-full h-full object-cover object-center">
+          </div>
+        </div>
+        <div>
+          <span class="font-heading font-black text-xl text-slate-900 dark:text-white">AQUA<span class="text-amber-500">SURGE</span></span>
+          <span class="block text-[8px] uppercase font-crest tracking-widest text-amber-500 font-bold">Luxury Ocean Club</span>
+        </div>
+      </div>
+      <button type="button" class="drawer-close-btn w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-slate-200" aria-label="Close Mobile Menu">
+        <i class="bi bi-x-lg text-sm"></i>
+      </button>
+    </div>
+
+    <nav class="flex flex-col gap-2 py-6">
+      <a href="index.html" class="px-4 py-3 rounded-xl font-bold text-amber-500 bg-amber-500/10 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-house-door"></i> Home</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+      <a href="activities.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-compass"></i> Activities & Fleet</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+      <a href="safety.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-shield-check"></i> Safety Standards</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+      <a href="contact.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-envelope"></i> Contact</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+      <a href="about.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-info-circle"></i> About</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+    </nav>
+
+    <!-- Mobile Drawer Footer Info -->
+    <div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800 space-y-4">
+      <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+        <i class="bi bi-geo-alt-fill text-amber-500 text-base"></i>
+        <span>Pier 4 VIP Marina & Heliport, Laguna Bay</span>
+      </div>
+      <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+        <i class="bi bi-telephone-fill text-amber-500 text-base"></i>
+        <span>+1 (800) 555-SURGE (24/7 VIP)</span>
+      </div>
+      <a href="booking.html" class="btn-primary w-full py-3.5 text-center text-sm font-bold block rounded-full">
+        Reserve VIP Experience
+      </a>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       HERO SECTION - LUXURY & COLORFUL VIBRANCE
+       ========================================================================= -->
+  <section class="hero-wrapper border-b border-amber-400/20">
+    <!-- Action Coastal Watersports Hero Background Image -->
+    <img src="assets/images/home-hero.jpg" alt="Laguna Bay luxury coastal waters and tropical cove" class="hero-video-bg hero-image-bg">
+    <div class="hero-bg-overlay"></div>
+
+    <!-- Ambient Colorful Glow Orbs -->
+    <div class="glow-orb glow-orb-cyan -top-20 -left-20 w-96 h-96"></div>
+    <div class="glow-orb glow-orb-gold top-1/3 -right-20 w-96 h-96"></div>
+    <div class="glow-orb glow-orb-coral -bottom-20 left-1/3 w-96 h-96"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10 py-6 sm:py-10 lg:py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        
+        <!-- Left Hero Headline & Pitch (Compact Resizing) -->
+        <div class="lg:col-span-7 space-y-4 sm:space-y-5">
+          
+          <!-- Live Telemetry Pill with Gold Border -->
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-amber-400/40 text-xs font-medium text-white shadow-lg">
+            <span class="status-indicator"></span>
+            <span class="font-extrabold text-amber-300 tracking-wider font-crest text-[11px]">GREEN FLAG VIP CLEARED:</span>
+            <span class="text-xs">Laguna Bay Swell 1.0m • Wind 8 kts</span>
+          </div>
+
+          <!-- Main H1 Headline: Colorful & Luxury (Resized) -->
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-white tracking-tight leading-[1.1]">
+            Ride the Waves. <br>
+            <span class="text-amber-300">
+              In Pure Luxury.
+            </span>
+          </h1>
+
+          <!-- Supporting Text -->
+          <p class="text-sm sm:text-base text-slate-200 max-w-xl leading-relaxed">
+            Command 300hp supercharged Sea-Doos, German Seabob water sleds, 500ft royal parasailing, and sunset catamaran champagne cruises with certified instructors in Laguna Bay.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+            <a href="booking.html" class="btn-primary text-sm py-2.5 px-6 text-center shadow-md font-bold">
+              <i class="bi bi-gem"></i>
+              <span>Reserve VIP Experience</span>
+            </a>
+            <a href="activities.html" class="btn-secondary text-sm py-2.5 px-5 text-center font-bold">
+              <span>View 2026 Fleet & Pricing</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- Quick Trust Badges -->
+          <div class="flex flex-wrap items-center gap-4 sm:gap-6 pt-1 text-xs text-slate-300">
+            <div class="flex items-center gap-1.5">
+              <i class="bi bi-patch-check-fill text-amber-400 text-base"></i>
+              <span>USCG & PADI 5-Star Certified</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="bi bi-award-fill text-cyan-400 text-base"></i>
+              <span>100% Incident-Free Safety Record</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="bi bi-shield-lock-fill text-emerald-400 text-base"></i>
+              <span>$10M Maritime Bond</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Hero Floating Interactive Widget: Luxury Kiosk (Compact & Tailored) -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="luxury-hero-card p-4 sm:p-5 text-white rounded-2xl w-full max-w-[390px] shadow-2xl">
+            <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-amber-400/20">
+              <div>
+                <span class="text-[10px] font-crest font-bold uppercase tracking-widest text-amber-400">Pier 4 VIP Kiosk</span>
+                <h3 class="text-base font-bold font-heading">Find Your Coastal Experience</h3>
+              </div>
+              <div class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-400 border border-amber-400/30 flex items-center justify-center text-sm shadow-md">
+                <i class="bi bi-gem"></i>
+              </div>
+            </div>
+
+            <form action="booking.html" method="GET" class="space-y-2.5">
+              <div>
+                <label for="hero-activity" class="block text-[11px] font-semibold text-slate-300 mb-1">Select Experience</label>
+                <select id="hero-activity" name="activity" class="form-select bg-slate-900/90 border-slate-700 text-white rounded-xl text-xs py-2 px-3 focus:border-amber-400 w-full truncate">
+                  <option value="act-1">Sea-Doo RXT-X 300hp Jet Ski ($120/pp)</option>
+                  <option value="act-2">SkyHigh Tandem Parasailing ($135/pp)</option>
+                  <option value="act-3">Seabob F5 SR Underwater Diver ($165/pp)</option>
+                  <option value="act-5">Hydroflight Flyboard Pro ($150/pp)</option>
+                  <option value="act-7">Mastercraft Pro Wakesurf ($145/pp)</option>
+                  <option value="act-12">Catamaran Champagne Cruise ($110/pp)</option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label for="hero-guests" class="block text-[11px] font-semibold text-slate-300 mb-1">Guests</label>
+                  <select id="hero-guests" class="form-select bg-slate-900/90 border-slate-700 text-white rounded-xl text-xs py-2 px-2.5 focus:border-amber-400 w-full">
+                    <option value="1">1 Solo VIP</option>
+                    <option value="2" selected>2 Tandem</option>
+                    <option value="4">4 Group (-15%)</option>
+                    <option value="6">6+ Party</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="hero-time" class="block text-[11px] font-semibold text-slate-300 mb-1">Preferred Slot</label>
+                  <select id="hero-time" class="form-select bg-slate-900/90 border-slate-700 text-white rounded-xl text-xs py-2 px-2.5 focus:border-amber-400 w-full">
+                    <option>09:00 AM (Glass)</option>
+                    <option selected>11:30 AM (Midday)</option>
+                    <option>02:30 PM (Breeze)</option>
+                    <option>05:15 PM (Sunset)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="p-2 rounded-xl bg-gradient-to-r from-amber-500/15 via-yellow-400/10 to-cyan-500/15 border border-amber-400/30 text-[10.5px] text-amber-200 flex items-center gap-2">
+                <i class="bi bi-stars text-amber-400 text-sm flex-shrink-0"></i>
+                <span class="leading-tight">✦ <strong>Complimentary 4K Drone Reel</strong> & towel service!</span>
+              </div>
+
+              <button type="submit" class="btn-primary w-full py-2.5 rounded-full font-bold text-xs shadow-md flex items-center justify-center gap-2">
+                <i class="bi bi-calendar-check"></i> Check Availability & Reserve
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </section>
+
+  <!-- =========================================================================
+       ANIMATED STATISTICS SECTION - LUXURY GOLD HIGHLIGHTS (RESIZED & UNIFORM)
+       ========================================================================= -->
+  <section class="py-8 sm:py-12 bg-slate-50 dark:bg-[#050C17] border-b border-slate-200 dark:border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 items-stretch">
+        
+        <!-- Stat 1 -->
+        <div class="flex flex-col items-center justify-between text-center h-full min-h-[165px] sm:min-h-[180px] p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl hover:border-amber-400 transition-all">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg sm:text-xl border border-amber-500/20 mb-2 shadow-sm">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl lg:text-[2rem] font-black font-heading text-slate-900 dark:text-white stat-counter leading-tight my-1" data-target="50000" data-suffix="+">
+            0
+          </div>
+          <p class="text-[11px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider min-h-[2.2rem] flex items-center justify-center text-center leading-tight">
+            VIP Riders Hosted
+          </p>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="flex flex-col items-center justify-between text-center h-full min-h-[165px] sm:min-h-[180px] p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl hover:border-cyan-400 transition-all">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center text-lg sm:text-xl border border-cyan-500/20 mb-2 shadow-sm">
+            <i class="bi bi-speedometer2"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl lg:text-[2rem] font-black font-heading text-slate-900 dark:text-white stat-counter leading-tight my-1" data-target="16" data-suffix="+">
+            0
+          </div>
+          <p class="text-[11px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider min-h-[2.2rem] flex items-center justify-center text-center leading-tight">
+            Supercraft & VIP Combos
+          </p>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="flex flex-col items-center justify-between text-center h-full min-h-[165px] sm:min-h-[180px] p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl hover:border-emerald-400 transition-all">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-lg sm:text-xl border border-emerald-500/20 mb-2 shadow-sm">
+            <i class="bi bi-shield-fill-check"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl lg:text-[2rem] font-black font-heading text-slate-900 dark:text-white stat-counter leading-tight my-1" data-target="14" data-suffix=" Yrs">
+            0
+          </div>
+          <p class="text-[11px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider min-h-[2.2rem] flex items-center justify-center text-center leading-tight">
+            Zero-Incident Record
+          </p>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="flex flex-col items-center justify-between text-center h-full min-h-[165px] sm:min-h-[180px] p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl hover:border-amber-400 transition-all">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg sm:text-xl border border-amber-500/20 mb-2 shadow-sm">
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl lg:text-[2rem] font-black font-heading text-slate-900 dark:text-white stat-counter leading-tight my-1" data-target="100" data-suffix="%">
+            0
+          </div>
+          <p class="text-[11px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider min-h-[2.2rem] flex items-center justify-center text-center leading-tight">
+            5-Star Concierge Score
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FEATURED ACTIVITIES PREVIEW SECTION
+       ========================================================================= -->
+  <section class="py-20 sm:py-28 bg-white dark:bg-[#030712] relative overflow-hidden">
+    <!-- Ambient backlights -->
+    <div class="glow-orb glow-orb-cyan top-1/2 -left-24 w-80 h-80"></div>
+    <div class="glow-orb glow-orb-gold bottom-10 -right-24 w-80 h-80"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div>
+          <span class="badge-gold mb-3"><i class="bi bi-gem"></i> Flagship Fleet Preview</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-slate-900 dark:text-white">
+            Elite 2026 Coastal Supercraft
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-base max-w-xl mt-3">
+            From 300hp supercharged wave runners to electric hydroflight and Seabob superyacht exploration. Experience true coastal luxury.
+          </p>
+        </div>
+        <div>
+          <a href="activities.html" class="btn-outline-ocean">
+            <span>Explore All 12 Fleet Supercraft</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4 Top Luxury Cards Grid -->
+      <!-- 4 Top Luxury Cards Grid (Resized Compact Fleet Cards) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        
+        <!-- Activity Card 1: Sea-Doo RXT-X 300 -->
+        <div class="card-theme group flex flex-col justify-between bg-white dark:bg-[#07101F] rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200 dark:border-slate-800/80 hover:border-amber-400/80 transition-all">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1503327431567-3ab5e6e79140?auto=format&fit=crop&w=800&q=85" alt="VIP Sea-Doo RXT-X 300hp supercharged jet ski jumping wave" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute top-2.5 left-2.5">
+              <span class="badge-gold text-[10px] py-0.5 px-2 font-bold">Thrill Supercraft</span>
+            </div>
+            <button type="button" class="wishlist-toggle-btn absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-black/50 backdrop-blur-md text-white flex items-center justify-center hover:bg-black hover:text-rose-400 transition-all z-10" data-activity-id="act-1" onclick="AquaSurge.toggleWishlist('act-1')" aria-label="Favorite">
+              <i class="bi bi-heart text-sm"></i>
+            </button>
+            <div class="absolute bottom-2 left-2.5 right-2.5 flex justify-between text-white text-[11px] z-10">
+              <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10"><i class="bi bi-clock-fill text-cyan-400 text-[10px]"></i> 30 Mins</span>
+              <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 text-amber-300 font-bold"><i class="bi bi-lightning-charge-fill text-amber-400 text-[10px]"></i> Thrill 5/5</span>
+            </div>
+          </div>
+          <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 gap-1 text-[10px] mb-1">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span class="text-slate-400 ml-1 text-[10px]">5.0 Flagship</span>
+              </div>
+              <h3 class="text-base font-bold font-heading text-slate-900 dark:text-white h-11 line-clamp-2 mb-1.5 group-hover:text-amber-400 transition-colors leading-snug flex items-start" title="VIP Sea-Doo RXT-X 300 Supercharged WaveRunner">
+                VIP Sea-Doo RXT-X 300 WaveRunner
+              </h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 h-9 mb-3 leading-relaxed">
+                Command a 300hp carbon-fiber watercraft with Bluetooth audio & chaser escort.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-auto">
+              <div class="flex items-baseline justify-between mb-3">
+                <div>
+                  <span class="text-[10px] text-slate-400 block">From</span>
+                  <div class="flex items-baseline gap-1">
+                    <span class="text-2xl font-black text-amber-500 dark:text-amber-400">$120</span>
+                    <span class="text-[10px] text-slate-400">/ person</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-emerald-500 flex items-center gap-1"><i class="bi bi-shield-check"></i> Insured</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="AquaSurge.viewActivityDetails('act-1')" class="h-9 px-2.5 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-800 text-center flex items-center justify-center">
+                  Details
+                </button>
+                <button type="button" onclick="AquaSurge.bookActivity('act-1')" class="h-9 btn-primary text-xs py-1.5 px-2 rounded-xl text-center font-bold flex items-center justify-center">
+                  Book VIP
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Card 2: Parasailing -->
+        <div class="card-theme group flex flex-col justify-between bg-white dark:bg-[#07101F] rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200 dark:border-slate-800/80 hover:border-amber-400/80 transition-all">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1632904074880-b77f02b6d01e?auto=format&fit=crop&w=800&q=85" alt="SkyHigh Royal Parasailing tandem flight" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute top-2.5 left-2.5">
+              <span class="badge-aqua text-[10px] py-0.5 px-2 font-bold">Calm & Scenic</span>
+            </div>
+            <button type="button" class="wishlist-toggle-btn absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-black/50 backdrop-blur-md text-white flex items-center justify-center hover:bg-black hover:text-rose-400 transition-all z-10" data-activity-id="act-2" onclick="AquaSurge.toggleWishlist('act-2')" aria-label="Favorite">
+              <i class="bi bi-heart text-sm"></i>
+            </button>
+            <div class="absolute bottom-2 left-2.5 right-2.5 flex justify-between text-white text-[11px] z-10">
+              <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10"><i class="bi bi-clock-fill text-cyan-400 text-[10px]"></i> 45 Mins</span>
+              <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 text-amber-300 font-bold"><i class="bi bi-lightning-charge-fill text-amber-400 text-[10px]"></i> Thrill 4/5</span>
+            </div>
+          </div>
+          <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 gap-1 text-[10px] mb-1">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span class="text-slate-400 ml-1 text-[10px]">5.0 500ft</span>
+              </div>
+              <h3 class="text-base font-bold font-heading text-slate-900 dark:text-white h-11 line-clamp-2 mb-1.5 group-hover:text-amber-400 transition-colors leading-snug flex items-start" title="SkyHigh Royal Tandem Parasailing & Dip">
+                SkyHigh Royal Parasailing & Dip
+              </h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 h-9 mb-3 leading-relaxed">
+                Soar 500 feet above glowing turquoise reefs with winch takeoff & foot-dip.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-auto">
+              <div class="flex items-baseline justify-between mb-3">
+                <div>
+                  <span class="text-[10px] text-slate-400 block">From</span>
+                  <div class="flex items-baseline gap-1">
+                    <span class="text-2xl font-black text-amber-500 dark:text-amber-400">$135</span>
+                    <span class="text-[10px] text-slate-400">/ person</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-emerald-500">Ages 6+</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="AquaSurge.viewActivityDetails('act-2')" class="h-9 px-2.5 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-800 text-center flex items-center justify-center">
+                  Details
+                </button>
+                <button type="button" onclick="AquaSurge.bookActivity('act-2')" class="h-9 btn-primary text-xs py-1.5 px-2 rounded-xl text-center font-bold flex items-center justify-center">
+                  Book VIP
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Card 3: Seabob F5 SR -->
+        <div class="card-theme group flex flex-col justify-between bg-white dark:bg-[#07101F] rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200 dark:border-slate-800/80 hover:border-amber-400/80 transition-all">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1682686581295-7364cabf5511?auto=format&fit=crop&w=800&q=85" alt="Seabob underwater diving toy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute top-2.5 left-2.5">
+              <span class="badge-vip text-[10px] py-0.5 px-2 font-bold"><i class="bi bi-gem"></i> Superyacht Toy</span>
+            </div>
+            <button type="button" class="wishlist-toggle-btn absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-black/50 backdrop-blur-md text-white flex items-center justify-center hover:bg-black hover:text-rose-400 transition-all z-10" data-activity-id="act-3" onclick="AquaSurge.toggleWishlist('act-3')" aria-label="Favorite">
+              <i class="bi bi-heart text-sm"></i>
+            </button>
+            <div class="absolute bottom-2 left-2.5 right-2.5 flex justify-between text-white text-[11px] z-10">
+              <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10"><i class="bi bi-clock-fill text-cyan-400 text-[10px]"></i> 45 Mins</span>
+              <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 text-amber-300 font-bold"><i class="bi bi-lightning-charge-fill text-amber-400 text-[10px]"></i> Thrill 5/5</span>
+            </div>
+          </div>
+          <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 gap-1 text-[10px] mb-1">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span class="text-slate-400 ml-1 text-[10px]">5.0 Sub-Aquatic</span>
+              </div>
+              <h3 class="text-base font-bold font-heading text-slate-900 dark:text-white h-11 line-clamp-2 mb-1.5 group-hover:text-amber-400 transition-colors leading-snug flex items-start" title="Seabob F5 SR Superyacht Underwater Diver">
+                Seabob F5 SR Underwater Diver
+              </h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 h-9 mb-3 leading-relaxed">
+                Glide above and beneath waves with dual HD cameras on electric water sled.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-auto">
+              <div class="flex items-baseline justify-between mb-3">
+                <div>
+                  <span class="text-[10px] text-slate-400 block">From</span>
+                  <div class="flex items-baseline gap-1">
+                    <span class="text-2xl font-black text-amber-500 dark:text-amber-400">$165</span>
+                    <span class="text-[10px] text-slate-400">/ person</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-emerald-500">Dive 40m</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="AquaSurge.viewActivityDetails('act-3')" class="h-9 px-2.5 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-800 text-center flex items-center justify-center">
+                  Details
+                </button>
+                <button type="button" onclick="AquaSurge.bookActivity('act-3')" class="h-9 btn-primary text-xs py-1.5 px-2 rounded-xl text-center font-bold flex items-center justify-center">
+                  Book VIP
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Card 4: Flyboard Pro -->
+        <div class="card-theme group flex flex-col justify-between bg-white dark:bg-[#07101F] rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200 dark:border-slate-800/80 hover:border-amber-400/80 transition-all">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1505408990643-cb9bbf4bfe2c?auto=format&fit=crop&w=800&q=85" alt="Hydroflight Flyboard hovering 35 feet over ocean" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute top-2.5 left-2.5">
+              <span class="badge-coral text-[10px] py-0.5 px-2 font-bold">Thrill Supercraft</span>
+            </div>
+            <button type="button" class="wishlist-toggle-btn absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-black/50 backdrop-blur-md text-white flex items-center justify-center hover:bg-black hover:text-rose-400 transition-all z-10" data-activity-id="act-5" onclick="AquaSurge.toggleWishlist('act-5')" aria-label="Favorite">
+              <i class="bi bi-heart text-sm"></i>
+            </button>
+            <div class="absolute bottom-2 left-2.5 right-2.5 flex justify-between text-white text-[11px] z-10">
+              <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10"><i class="bi bi-clock-fill text-cyan-400 text-[10px]"></i> 35 Mins</span>
+              <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 text-amber-300 font-bold"><i class="bi bi-lightning-charge-fill text-amber-400 text-[10px]"></i> Thrill 5/5</span>
+            </div>
+          </div>
+          <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 gap-1 text-[10px] mb-1">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span class="text-slate-400 ml-1 text-[10px]">5.0 Iron Man</span>
+              </div>
+              <h3 class="text-base font-bold font-heading text-slate-900 dark:text-white h-11 line-clamp-2 mb-1.5 group-hover:text-amber-400 transition-colors leading-snug flex items-start" title="Hydroflight Zapata Flyboard Pro Flight">
+                Zapata Flyboard Pro Flight
+              </h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 h-9 mb-3 leading-relaxed">
+                Hover 35 feet above crystal waves powered by twin pressurized water jets.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-auto">
+              <div class="flex items-baseline justify-between mb-3">
+                <div>
+                  <span class="text-[10px] text-slate-400 block">From</span>
+                  <div class="flex items-baseline gap-1">
+                    <span class="text-2xl font-black text-amber-500 dark:text-amber-400">$150</span>
+                    <span class="text-[10px] text-slate-400">/ person</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-emerald-500">Pro Escort</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="AquaSurge.viewActivityDetails('act-5')" class="h-9 px-2.5 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-800 text-center flex items-center justify-center">
+                  Details
+                </button>
+                <button type="button" onclick="AquaSurge.bookActivity('act-5')" class="h-9 btn-primary text-xs py-1.5 px-2 rounded-xl text-center font-bold flex items-center justify-center">
+                  Book VIP
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Banner Strip linking to Combos -->
+      <div class="mt-16 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#071324] via-[#0C2140] to-[#173C6C] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl border border-amber-400/30">
+        <div class="space-y-2">
+          <span class="text-xs uppercase font-extrabold tracking-widest bg-amber-400/20 text-amber-300 border border-amber-400/30 px-3.5 py-1 rounded-full">Save up to $140 on Curated Passes</span>
+          <h3 class="text-2xl sm:text-3xl font-bold font-heading">Multi-Experience VIP Beach Passes & Combos</h3>
+          <p class="text-slate-300 text-sm max-w-xl">Combine the Sea-Doo RXT-X 300 with Parasailing and the Offshore Racing Boat in our best-selling Monaco Superyacht Trio.</p>
+        </div>
+        <a href="activities.html#combos" class="btn-primary py-3.5 px-8 font-extrabold text-sm whitespace-nowrap shadow-xl">
+          Explore VIP Passes
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       THE 5-STAR LUXURY DIFFERENCE & HOW IT WORKS
+       ========================================================================= -->
+  <section id="about" class="py-20 sm:py-28 bg-slate-50 dark:bg-[#050C17] border-y border-slate-200 dark:border-slate-800 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <!-- Part 1: Why Choose Us -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="badge-gold mb-3"><i class="bi bi-patch-check"></i> Unrivaled Standards</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-slate-900 dark:text-white">
+          The 5-Star Luxury Distinction
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-base mt-4">
+          We blend extreme oceanic adrenaline with uncompromising marine safety and personalized Riviera concierge hospitality.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+        
+        <div class="p-8 rounded-3xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-xl hover:border-amber-400 transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-3xl mb-6 border border-amber-500/20">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <h3 class="text-xl font-bold font-heading mb-3 text-slate-900 dark:text-white">100% USCG Master Certified</h3>
+          <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Every captain and dive master holds commercial maritime credentials with mandatory bi-annual rescue and first-aid refreshers.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-xl hover:border-cyan-400 transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-3xl mb-6 border border-cyan-500/20">
+            <i class="bi bi-gem"></i>
+          </div>
+          <h3 class="text-xl font-bold font-heading mb-3 text-slate-900 dark:text-white">2026 Ultra-Luxury Fleet</h3>
+          <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Zero dated machinery. 300hp Sea-Doos, German Seabobs, Mastercraft wake craft, and Zapata platforms rotated annually with 32-point daily audits.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-xl hover:border-emerald-400 transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-3xl mb-6 border border-emerald-500/20">
+            <i class="bi bi-award-fill"></i>
+          </div>
+          <h3 class="text-xl font-bold font-heading mb-3 text-slate-900 dark:text-white">$10M Maritime Bond</h3>
+          <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Comprehensive Lloyd's of London $10M liability protection included with every reservation, safeguarding families, solo riders, and private parties.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-xl hover:border-amber-400 transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-3xl mb-6 border border-amber-500/20">
+            <i class="bi bi-cup-hot-fill"></i>
+          </div>
+          <h3 class="text-xl font-bold font-heading mb-3 text-slate-900 dark:text-white">VIP Concierge Service</h3>
+          <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+            From chilled champagne and cold eucalyptus towels to complimentary 4K drone videography and private beach cabanas.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Part 2: How It Works (Step-by-Step Flow) -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="badge-coral mb-3">Seamless 4-Step Journey</span>
+        <h2 class="text-3xl sm:text-4xl font-black font-heading text-slate-900 dark:text-white">
+          Your VIP Adventure Flow
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+        
+        <!-- Step 1 -->
+        <div class="relative flex flex-col items-center text-center p-6 rounded-3xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-lg">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 text-slate-950 font-black text-lg flex items-center justify-center mb-4 shadow-lg shadow-amber-500/30">
+            01
+          </div>
+          <h4 class="text-lg font-bold font-heading mb-2">Select & Reserve</h4>
+          <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
+            Choose your preferred luxury supercraft, private departure slot, and guest count with real-time rates.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative flex flex-col items-center text-center p-6 rounded-3xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-lg">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-500 text-white font-black text-lg flex items-center justify-center mb-4 shadow-lg shadow-cyan-500/30">
+            02
+          </div>
+          <h4 class="text-lg font-bold font-heading mb-2">Pier 4 VIP Arrival</h4>
+          <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
+            Complimentary valet arrival, private digital locker check-in, and custom neoprene vest fitting.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative flex flex-col items-center text-center p-6 rounded-3xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-lg">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-orange-500 to-rose-500 text-white font-black text-lg flex items-center justify-center mb-4 shadow-lg shadow-orange-500/30">
+            03
+          </div>
+          <h4 class="text-lg font-bold font-heading mb-2">Safety & Theory</h4>
+          <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
+            Concierge dry-land briefing covering throttle handling, engine kill-switch, and geofenced safe corridors.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative flex flex-col items-center text-center p-6 rounded-3xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 shadow-lg">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-emerald-400 to-teal-600 text-white font-black text-lg flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/30">
+            04
+          </div>
+          <h4 class="text-lg font-bold font-heading mb-2">Command the Surf</h4>
+          <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
+            Launch into deep open-water swells with dedicated 300hp chaser tenders on continuous standby!
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       LIVE WEATHER & SEA CONDITIONS WIDGET SECTION
+       ========================================================================= -->
+  <section class="py-20 sm:py-24 bg-white dark:bg-[#030712] relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      
+      <div class="bg-gradient-to-br from-[#040A14] via-[#0A192F] to-[#0E284D] rounded-[2.5rem] p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden border border-amber-400/30">
+        
+        <!-- Decorative grid -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-8 border-b border-white/10">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+              Live Marine Telemetry
+            </div>
+            <h3 class="text-2xl sm:text-4xl font-black font-heading">
+              Laguna Bay Sea & Harbor Conditions
+            </h3>
+            <p class="text-slate-300 text-sm mt-1 max-w-xl">
+              Real-time telemetry reported from Coastal Station #4 and Laguna Bay Harbor Patrol.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <button type="button" onclick="AquaSurge.refreshWeatherWidget()" class="weather-refresh-btn btn-secondary text-xs sm:text-sm py-2.5 px-4" title="Sync live station data">
+              <i class="bi bi-arrow-repeat text-base"></i> Sync Telemetry
+            </button>
+            <div class="text-right">
+              <span class="text-[11px] text-slate-300 block">Flag Condition</span>
+              <strong class="text-lg font-bold text-emerald-400 flex items-center gap-1.5">
+                <i class="bi bi-flag-fill"></i> GREEN FLAG (Calm Swell)
+              </strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Cards Grid -->
+        <div class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-8">
+          
+          <div class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10">
+            <div class="flex items-center justify-between text-amber-300 text-xs font-semibold mb-2">
+              <span>WATER TEMP</span>
+              <i class="bi bi-thermometer-half text-lg"></i>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black font-heading text-white">26.2°C</div>
+            <span class="text-xs text-slate-300 block mt-1">79.2°F • Tropical warmth</span>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10">
+            <div class="flex items-center justify-between text-cyan-300 text-xs font-semibold mb-2">
+              <span>WAVE SWELL</span>
+              <i class="bi bi-water text-lg"></i>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black font-heading text-white">1.0m</div>
+            <span class="text-xs text-slate-300 block mt-1">Clean swell • Glassy surface</span>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10">
+            <div class="flex items-center justify-between text-amber-300 text-xs font-semibold mb-2">
+              <span>WIND VELOCITY</span>
+              <i class="bi bi-wind text-lg"></i>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black font-heading text-white">8 Knots</div>
+            <span class="text-xs text-slate-300 block mt-1">SW Light Warm Breeze</span>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10">
+            <div class="flex items-center justify-between text-emerald-300 text-xs font-semibold mb-2">
+              <span>UNDERWATER VISIBILITY</span>
+              <i class="bi bi-eye text-lg"></i>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black font-heading text-white">22+ Meters</div>
+            <span class="text-xs text-slate-300 block mt-1">Pristine crystal clarity</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PHOTO GALLERY WITH LIGHTBOX - COLOURFUL LUXURY
+       ========================================================================= -->
+  <section class="py-20 sm:py-28 bg-slate-50 dark:bg-[#050C17] border-y border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="badge-gold mb-3"><i class="bi bi-camera-fill"></i> Visual Moments</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-slate-900 dark:text-white">
+          Real Action. Pure Waves.
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-base mt-4">
+          Click any photo to open our high-definition rider gallery. High-velocity exhilaration across Laguna Bay and the Mediterranean.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        
+        <div class="relative aspect-square rounded-3xl overflow-hidden group cursor-pointer shadow-xl border border-slate-200 dark:border-slate-800" onclick="AquaSurge.openLightbox('https://images.unsplash.com/photo-1503327431567-3ab5e6e79140?auto=format&fit=crop&w=1600&q=88', 'VIP Sea-Doo RXT-X 300hp Supercharged Jet Ski surfing deep swells')">
+          <img src="https://images.unsplash.com/photo-1503327431567-3ab5e6e79140?auto=format&fit=crop&w=650&q=85" alt="Jet ski wave jumping" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-400">
+            <i class="bi bi-arrows-fullscreen text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="relative aspect-square rounded-3xl overflow-hidden group cursor-pointer shadow-xl border border-slate-200 dark:border-slate-800" onclick="AquaSurge.openLightbox('https://images.unsplash.com/photo-1632904074880-b77f02b6d01e?auto=format&fit=crop&w=1600&q=88', 'SkyHigh Royal Parasailing tandem flight 500 feet over turquoise coral bay')">
+          <img src="https://images.unsplash.com/photo-1632904074880-b77f02b6d01e?auto=format&fit=crop&w=650&q=85" alt="Parasailing over turquoise water" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-400">
+            <i class="bi bi-arrows-fullscreen text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="relative aspect-square rounded-3xl overflow-hidden group cursor-pointer shadow-xl border border-slate-200 dark:border-slate-800" onclick="AquaSurge.openLightbox('https://images.unsplash.com/photo-1505408990643-cb9bbf4bfe2c?auto=format&fit=crop&w=1600&q=88', 'Hydroflight Zapata Flyboard Pro hovering above ocean spray')">
+          <img src="https://images.unsplash.com/photo-1505408990643-cb9bbf4bfe2c?auto=format&fit=crop&w=650&q=85" alt="Flyboard rider" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-400">
+            <i class="bi bi-arrows-fullscreen text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="relative aspect-square rounded-3xl overflow-hidden group cursor-pointer shadow-xl border border-slate-200 dark:border-slate-800" onclick="AquaSurge.openLightbox('https://images.unsplash.com/photo-1682686581295-7364cabf5511?auto=format&fit=crop&w=1600&q=88', 'Seabob F5 SR underwater luxury diving alongside sea turtles')">
+          <img src="https://images.unsplash.com/photo-1682686581295-7364cabf5511?auto=format&fit=crop&w=650&q=85" alt="Seabob underwater diving" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-400">
+            <i class="bi bi-arrows-fullscreen text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="relative aspect-square rounded-3xl overflow-hidden group cursor-pointer shadow-xl border border-slate-200 dark:border-slate-800" onclick="AquaSurge.openLightbox('assets/images/crystal-clear-kayak.jpg', '100% Crystal-Clear LED Kayak Expedition across turquoise lagoon')">
+          <img src="assets/images/crystal-clear-kayak.jpg" alt="100% Crystal-Clear LED Kayak Expedition" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-400">
+            <i class="bi bi-arrows-fullscreen text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="relative aspect-square rounded-3xl overflow-hidden group cursor-pointer shadow-xl border border-slate-200 dark:border-slate-800" onclick="AquaSurge.openLightbox('https://images.unsplash.com/photo-1682686581030-7fa4ea2b96c3?auto=format&fit=crop&w=1600&q=88', 'Snorkeling alongside green sea turtles on outer reef sanctuary')">
+          <img src="https://images.unsplash.com/photo-1682686581030-7fa4ea2b96c3?auto=format&fit=crop&w=650&q=85" alt="Snorkeling with green turtle" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-400">
+            <i class="bi bi-arrows-fullscreen text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="relative aspect-square rounded-3xl overflow-hidden group cursor-pointer shadow-xl border border-slate-200 dark:border-slate-800" onclick="AquaSurge.openLightbox('assets/images/offshore-powerboat.jpg', 'Offshore 900hp Mercury Racing powerboat carving high-speed ocean spray')">
+          <img src="assets/images/offshore-powerboat.jpg" alt="Speedboat in waves" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-400">
+            <i class="bi bi-arrows-fullscreen text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="relative aspect-square rounded-3xl overflow-hidden group cursor-pointer shadow-xl border border-slate-200 dark:border-slate-800" onclick="AquaSurge.openLightbox('https://images.unsplash.com/photo-1773593893090-27d17a880a07?auto=format&fit=crop&w=1600&q=88', 'Golden hour luxury catamaran champagne sunset cruise')">
+          <img src="https://images.unsplash.com/photo-1773593893090-27d17a880a07?auto=format&fit=crop&w=650&q=85" alt="Catamaran sunset cruise" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-400">
+            <i class="bi bi-arrows-fullscreen text-3xl"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       CUSTOMER TESTIMONIALS SECTION - 5-STAR LUXURY
+       ========================================================================= -->
+  <section class="py-20 sm:py-28 bg-white dark:bg-[#030712]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="badge-gold mb-3"><i class="bi bi-star-fill"></i> Unfiltered 5-Star Reviews</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-slate-900 dark:text-white">
+          Trusted by 50,000+ VIP Adventurers
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-base mt-4">
+          Read genuine reviews from superyacht owners, honeymooners, and adrenaline seekers who joined us on the water.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Review 1 -->
+        <div class="p-8 rounded-3xl bg-slate-50 dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:-translate-y-2 hover:border-amber-400 transition-all duration-300 shadow-lg">
+          <div>
+            <div class="flex text-amber-400 gap-1 text-sm mb-4">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="text-slate-700 dark:text-slate-300 text-xs sm:text-sm italic leading-relaxed mb-6">
+              "AquaSurge has brought French Riviera luxury straight to Laguna Bay. The Seabob watercraft were immaculate, the champagne service on the catamaran was five-star, and the safety crew was thoroughly professional."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=85" alt="Lady Vivienne Sterling" class="w-12 h-12 rounded-full object-cover border-2 border-amber-400">
+            <div>
+              <h5 class="font-bold text-sm text-slate-900 dark:text-white">Lord & Lady Sterling</h5>
+              <span class="text-xs text-amber-500 font-semibold block">Seabob F5 SR + Catamaran</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="p-8 rounded-3xl bg-slate-50 dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:-translate-y-2 hover:border-amber-400 transition-all duration-300 shadow-lg">
+          <div>
+            <div class="flex text-amber-400 gap-1 text-sm mb-4">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="text-slate-700 dark:text-slate-300 text-xs sm:text-sm italic leading-relaxed mb-6">
+              "The hydraulic winch takeoff was so effortless it felt like floating into a dream. Gaze 500 feet over the azure lagoon seeing dolphins below. The 4K drone reel they edited for us was breathtaking!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=85" alt="Sophia Moreau" class="w-12 h-12 rounded-full object-cover border-2 border-amber-400">
+            <div>
+              <h5 class="font-bold text-sm text-slate-900 dark:text-white">Dr. Alexander & Sophia Moreau</h5>
+              <span class="text-xs text-amber-500 font-semibold block">Royal Tandem Parasailing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="p-8 rounded-3xl bg-slate-50 dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:-translate-y-2 hover:border-amber-400 transition-all duration-300 shadow-lg">
+          <div>
+            <div class="flex text-amber-400 gap-1 text-sm mb-4">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="text-slate-700 dark:text-slate-300 text-xs sm:text-sm italic leading-relaxed mb-6">
+              "The 300hp Sea-Doo is an absolute beast on the water. The private chaser rescue tender gave me complete freedom to carve waves while feeling totally secure. Best luxury watersports setup on the coast."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=85" alt="Marcus Vance" class="w-12 h-12 rounded-full object-cover border-2 border-amber-400">
+            <div>
+              <h5 class="font-bold text-sm text-slate-900 dark:text-white">Marcus Vance</h5>
+              <span class="text-xs text-amber-500 font-semibold block">Sea-Doo RXT-X 300hp</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="p-8 rounded-3xl bg-slate-50 dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:-translate-y-2 hover:border-amber-400 transition-all duration-300 shadow-lg">
+          <div>
+            <div class="flex text-amber-400 gap-1 text-sm mb-4">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="text-slate-700 dark:text-slate-300 text-xs sm:text-sm italic leading-relaxed mb-6">
+              "As someone who audits commercial marine operations globally, AquaSurge sets the international benchmark. Dual redundant systems, Scubapro carbon equipment, and flawless 1-on-1 private dive masters."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=85" alt="Capt. Rachel Kensington" class="w-12 h-12 rounded-full object-cover border-2 border-amber-400">
+            <div>
+              <h5 class="font-bold text-sm text-slate-900 dark:text-white">Capt. Rachel Kensington</h5>
+              <span class="text-xs text-amber-500 font-semibold block">PADI VIP Scuba Dive</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SAFETY TEASER & OFFICIAL ACCREDITATIONS
+       ========================================================================= -->
+  <section class="py-20 sm:py-24 bg-gradient-to-b from-[#030712] via-[#071324] to-[#030712] text-white relative overflow-hidden border-t border-amber-400/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <span class="badge-gold"><i class="bi bi-shield-check"></i> Zero-Compromise Marine Safety</span>
+          <h2 class="text-3xl sm:text-5xl font-black font-heading leading-tight">
+            World-Class Safety Standards & Elite Protocols
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Our 14-year zero-incident record is no coincidence. Every watercraft is inspected daily with a 32-point mechanical audit, life vests are custom-tailored for all sizes, and a dedicated 300hp rescue tender patrols the arena.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="flex items-start gap-3">
+              <i class="bi bi-patch-check-fill text-amber-400 text-xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="block text-sm font-bold">Automatic Engine Cutoff Kill-Lanyards</strong>
+                <span class="text-xs text-slate-400">Engine cuts out instantly if driver detaches</span>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="bi bi-patch-check-fill text-amber-400 text-xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="block text-sm font-bold">GPS Geofenced Water Corridors</strong>
+                <span class="text-xs text-slate-400">Automated perimeter alerts protect marine zones</span>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="bi bi-patch-check-fill text-amber-400 text-xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="block text-sm font-bold">AED & First-Aid Certified Skippers</strong>
+                <span class="text-xs text-slate-400">On-site emergency defibrillators & oxygen sets</span>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="bi bi-patch-check-fill text-amber-400 text-xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="block text-sm font-bold">Fair Weather Guarantee</strong>
+                <span class="text-xs text-slate-400">100% full refund if Coast Guard flags weather</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4 pt-4">
+            <a href="safety.html" class="btn-primary text-sm py-3 px-7 rounded-full">
+              <span>Read Full Safety Protocols</span>
+              <i class="bi bi-shield-lock"></i>
+            </a>
+            <button type="button" onclick="AquaSurge.downloadSafetyGuidelines()" class="btn-secondary text-sm py-3 px-7 rounded-full">
+              <i class="bi bi-file-earmark-arrow-down"></i>
+              <span>Download Rider Guidelines</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="p-8 rounded-3xl bg-[#08162B] border border-amber-400/30 space-y-6 shadow-2xl">
+            <h4 class="text-lg font-bold font-crest uppercase tracking-wider text-amber-400">Official Marine Accreditations</h4>
+            <div class="space-y-4">
+              <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center gap-4">
+                <i class="bi bi-patch-check-fill text-3xl text-emerald-400"></i>
+                <div>
+                  <h5 class="font-bold text-sm">USCG Commercial Fleet Operator</h5>
+                  <span class="text-xs text-slate-400">Annual hull and twin-engine audit passed</span>
+                </div>
+              </div>
+              <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center gap-4">
+                <i class="bi bi-patch-check-fill text-3xl text-cyan-400"></i>
+                <div>
+                  <h5 class="font-bold text-sm">PADI 5-Star Luxury Dive Partner</h5>
+                  <span class="text-xs text-slate-400">Certified discover dive and reef exploration</span>
+                </div>
+              </div>
+              <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center gap-4">
+                <i class="bi bi-patch-check-fill text-3xl text-amber-400"></i>
+                <div>
+                  <h5 class="font-bold text-sm">Lloyd's Maritime Gold Seal</h5>
+                  <span class="text-xs text-slate-400">$10,000,000 comprehensive liability protection</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       MINI FAQ ACCORDION SECTION
+       ========================================================================= -->
+  <section class="py-20 sm:py-28 bg-white dark:bg-[#030712]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center mb-16">
+        <span class="badge-gold mb-3"><i class="bi bi-question-circle"></i> Transparent Answers</span>
+        <h2 class="text-3xl sm:text-4xl font-black font-heading text-slate-900 dark:text-white">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">
+          Everything you need to know before stepping onto the teak docks of Pier 4.
+        </p>
+      </div>
+
+      <div class="faq-container space-y-4">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-accordion-item open">
+          <div class="faq-header">
+            <span>Do I need prior experience or a boat license to ride a jet ski or Seabob?</span>
+            <div class="faq-icon"><i class="bi bi-chevron-down"></i></div>
+          </div>
+          <div class="faq-content" style="max-height: 200px;">
+            <p class="text-xs sm:text-sm leading-relaxed">
+              No boat license or previous water sports experience is required! All guests receive an intuitive dry-land training session, safety orientation, and an orientation lap before free riding in our supervised open-water arena. Drivers must be 16+ with valid photo ID.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-accordion-item">
+          <div class="faq-header">
+            <span>What happens if weather or sea conditions are unfavorable?</span>
+            <div class="faq-icon"><i class="bi bi-chevron-down"></i></div>
+          </div>
+          <div class="faq-content">
+            <p class="text-xs sm:text-sm leading-relaxed">
+              Safety is our non-negotiable benchmark. If the Harbor Master or our Marine Director issues a Yellow or Red warning due to squalls, excessive swells, or lightning, you can reschedule at zero fee or receive an immediate 100% full refund with our Fair Weather Guarantee.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-accordion-item">
+          <div class="faq-header">
+            <span>Can non-swimmers participate in water sports?</span>
+            <div class="faq-icon"><i class="bi bi-chevron-down"></i></div>
+          </div>
+          <div class="faq-content">
+            <p class="text-xs sm:text-sm leading-relaxed">
+              Yes! Activities such as Parasailing, Speed Boat Blast, Catamaran Sunset Cruise, and Banana Boat rides are fully accessible to non-swimmers because our high-flotation USCG certified impact vests ensure continuous head-above-water buoyancy.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-accordion-item">
+          <div class="faq-header">
+            <span>What should I bring on the day of my reservation?</span>
+            <div class="faq-icon"><i class="bi bi-chevron-down"></i></div>
+          </div>
+          <div class="faq-content">
+            <p class="text-xs sm:text-sm leading-relaxed">
+              Bring swimwear, sunglasses with a head strap, reef-safe sunscreen, and a valid photo ID. We provide free secure lockers, life vests, wetsuits, water bottles, and waterproof phone cases on site.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="contact.html" class="inline-flex items-center gap-2 text-amber-500 font-bold hover:text-amber-400 text-sm">
+          <span>Have more questions? Speak directly with our VIP Concierge</span>
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       VIP CELEBRATIONS & PRIVATE CHARTERS CALLOUT
+       ========================================================================= -->
+  <section class="py-16 bg-gradient-to-r from-[#030712] via-[#0A192F] to-[#173C6C] text-white border-y border-amber-400/30 relative overflow-hidden">
+    <div class="glow-orb glow-orb-gold -top-10 -right-10 w-80 h-80"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+      <div class="space-y-2 text-center md:text-left">
+        <span class="text-xs uppercase font-crest font-black tracking-widest bg-amber-400/20 text-amber-300 border border-amber-400/30 px-3.5 py-1 rounded-full">VIP Celebrations & Private Yacht Charters</span>
+        <h3 class="text-2xl sm:text-4xl font-black font-heading">Planning a Birthday, Bachelor Party, or Luxury Corporate Retreat?</h3>
+        <p class="text-slate-300 text-sm max-w-xl">
+          Get customized multi-boat beach takeovers, private VIP beach cabana lounges, chilled champagne catering, and dedicated instructor tenders for groups of 6 to 60 guests.
+        </p>
+      </div>
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <a href="contact.html?type=group" class="btn-primary py-3.5 px-8 font-black text-sm rounded-full shadow-2xl">
+          Request VIP Group Proposal
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER (LIGHT & DARK ADAPTIVE)
+       ========================================================================= -->
+  <footer class="site-footer bg-slate-100 dark:bg-[#030712] text-slate-800 dark:text-white pt-16 sm:pt-20 pb-12 border-t border-slate-200 dark:border-amber-400/20 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-slate-200 dark:border-slate-800">
+        
+        <!-- Col 1: Brand & Bio -->
+        <div class="lg:col-span-4 space-y-6">
+          <a href="index.html" class="flex items-center gap-3.5 group">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-400 via-yellow-300 to-cyan-400 p-0.5 shadow-lg group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden">
+              <div class="w-full h-full bg-white dark:bg-[#050C18] rounded-[14px] overflow-hidden flex items-center justify-center">
+                <img src="assets/images/logo-square.jpg" alt="AquaSurge Jet Ski Crest" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-300">
+              </div>
+            </div>
+            <div>
+              <span class="font-heading font-black text-2xl text-slate-900 dark:text-white">AQUA<span class="text-amber-500 dark:text-amber-400">SURGE</span></span>
+              <span class="block text-[8px] uppercase font-crest tracking-widest text-amber-600 dark:text-amber-400 font-bold">Luxury Ocean Club</span>
+            </div>
+          </a>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Laguna Bay's premier 5-star beach water sports and luxury ocean club. Combining 300hp supercharged performance with world-class marine safety since 2012.
+          </p>
+          <div class="flex items-center gap-3">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:border-amber-400 shadow-sm transition-all" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:border-amber-400 shadow-sm transition-all" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:border-amber-400 shadow-sm transition-all" aria-label="YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
+            <a href="https://wa.me/18005557874" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-emerald-500 hover:border-emerald-400 shadow-sm transition-all" aria-label="WhatsApp Concierge">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div class="lg:col-span-2 space-y-4">
+          <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">Quick Navigation</h4>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+            <li><a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Home</a></li>
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Activities & Fleet</a></li>
+            <li><a href="safety.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Safety Standards</a></li>
+            <li><a href="contact.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Contact</a></li>
+            <li><a href="about.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">About</a></li>
+            <li><a href="booking.html" class="text-amber-500 font-bold hover:text-amber-400 transition-colors">VIP Reservation Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Popular Activities -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">Featured Supercraft</h4>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Sea-Doo RXT-X 300 Jet Ski</a></li>
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">SkyHigh Royal Parasailing</a></li>
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Seabob F5 SR Underwater Diver</a></li>
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Zapata Flyboard Pro Flight</a></li>
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Sunset Catamaran Cruise</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter & Contact -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">AquaSurge Privé Club</h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400">Subscribe for private swell telemetry, seasonal VIP discounts, and complimentary 4K drone video vouchers.</p>
+          <form class="newsletter-form space-y-2">
+            <div class="relative">
+              <input type="email" placeholder="Your email address" required class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-amber-400 shadow-sm transition-colors">
+            </div>
+            <button type="submit" class="btn-primary w-full py-2.5 rounded-full text-xs font-bold shadow-md">
+              Join Privé Club
+            </button>
+          </form>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 pt-2 flex items-center gap-1.5">
+            <i class="bi bi-shield-lock"></i> 100% confidential. Unsubscribe anytime.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-4">
+        <p>© 2026 AquaSurge Luxury Ocean Club. All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="safety.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Safety Terms</a>
+          <a href="contact.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Pier 4 VIP Map</a>
+          <a href="javascript:void(0)" onclick="AquaSurge.downloadSafetyGuidelines()" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Download Guidelines</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       GLOBAL MODALS & FLOATING CONTROLS
+       ========================================================================= -->
+  
+  <!-- Activity Details Modal -->
+  <div id="activity-detail-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div id="activity-detail-content"></div>
+    </div>
+  </div>
+
+  <!-- Wishlist Drawer Modal -->
+  <div id="wishlist-modal" class="modal-overlay">
+    <div class="modal-container p-6 sm:p-8">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+        <div class="flex items-center gap-2">
+          <i class="bi bi-heart-fill text-rose-500 text-xl"></i>
+          <h3 class="text-xl font-bold font-heading">Your Saved VIP Activities</h3>
+        </div>
+        <button type="button" data-modal-close="wishlist-modal" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center justify-center hover:bg-slate-200" aria-label="Close">
+          <i class="bi bi-x-lg text-sm"></i>
+        </button>
+      </div>
+      <div id="wishlist-items-container"></div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top-btn fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 text-slate-950 shadow-2xl flex items-center justify-center hover:scale-110 transition-all opacity-0 pointer-events-none z-50 font-bold" aria-label="Back to Top">
+    <i class="bi bi-arrow-up text-lg"></i>
+  </button>
+
+  <!-- Core Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('aquasurge_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Concierge & Pier 4 Marina Office | AquaSurge Laguna Bay</title>
+  <meta name="description" content="Contact the master harbor concierge at AquaSurge Luxury Ocean Club. Pier 4 VIP Marina, Laguna Bay. Private yacht charters, fleet events, and 24/7 VIP support.">
+  <meta name="keywords" content="AquaSurge contact, Pier 4 Laguna Bay, luxury water sports concierge, private yacht charter contact, marine radio VHF 16">
+  <meta name="theme-color" content="#030712">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="VIP Concierge & Marina Office | AquaSurge Ocean Club">
+  <meta property="og:description" content="Pier 4 VIP Marina, North Promenade, Laguna Bay. Direct concierge hotline, WhatsApp, and VHF radio hailing.">
+  <meta property="og:image" content="assets/images/contact-hero.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/images/logo-square.jpg">
+
+  <!-- Forward activity URL query to dedicated booking page if present -->
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('activity')) {
+        window.location.replace('booking.html' + window.location.search);
+      }
+    })();
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ocean: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              700: '#0369a1',
+              900: '#0c4a6e',
+              950: '#082f49',
+            },
+            amber: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            heading: ['"Playfair Display"', 'Georgia', 'serif'],
+            crest: ['"Cinzel"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="antialiased selection:bg-amber-400 selection:text-slate-950">
+
+  <!-- =========================================================================
+       HEADER & NAVIGATION (SOLID OPAQUE LUXURY BAR)
+       ========================================================================= -->
+  <header class="main-header flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-amber-400 rounded-xl py-1" aria-label="AquaSurge Home">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-amber-400 via-amber-300 to-cyan-400 p-0.5 shadow-md group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden">
+          <div class="brand-logo-frame w-full h-full rounded-[10px] overflow-hidden flex items-center justify-center">
+            <img src="assets/images/logo-square.jpg" alt="AquaSurge Jet Ski Crest" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500">
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="brand-text-title font-heading font-black text-lg sm:text-xl tracking-tight leading-none">
+            AQUA<span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 dark:from-amber-400 dark:via-yellow-200 dark:to-amber-500">SURGE</span>
+          </span>
+          <span class="brand-text-subtitle text-[8px] uppercase font-crest font-bold tracking-[0.16em] mt-0.5">
+            Luxury Ocean Club • 5-Star
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-5 xl:gap-6 flex-nowrap whitespace-nowrap">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="activities.html" class="nav-link">Activities & Fleet</a>
+        <a href="safety.html" class="nav-link">Safety Standards</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- Wishlist Button -->
+        <button type="button" onclick="AquaSurge.openWishlistDrawer()" class="icon-btn" aria-label="View Saved Activities" title="Your VIP Wishlist">
+          <i class="bi bi-heart text-base"></i>
+          <span class="wishlist-count-badge absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center shadow" style="display: none;">0</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn icon-btn" aria-label="Toggle Theme Mode" title="Toggle Light/Dark Theme">
+          <i class="bi bi-moon-stars-fill theme-toggle-icon text-base"></i>
+        </button>
+
+        <!-- RTL Toggle -->
+        <button type="button" class="rtl-toggle-btn icon-btn px-1.5 text-[11px] font-bold" aria-label="Toggle Direction" title="Switch RTL / LTR Layout">
+          <span class="rtl-status-label">RTL</span>
+        </button>
+
+        <!-- Book VIP Experience CTA (Desktop) - Direct to Booking Page -->
+        <a href="booking.html" class="hidden sm:inline-flex btn-primary text-xs py-2 px-3.5 rounded-full font-bold">
+          <i class="bi bi-gem"></i>
+          <span>Book VIP</span>
+        </a>
+
+        <!-- Mobile Hamburger Button -->
+        <button type="button" class="mobile-menu-toggle icon-btn lg:hidden ml-0.5" aria-label="Open Mobile Menu">
+          <i class="bi bi-list text-xl"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Slide-out Drawer -->
+  <div class="drawer-backdrop"></div>
+  <aside class="mobile-drawer p-6" aria-label="Mobile Navigation">
+    <div class="flex items-center justify-between pb-6 border-b border-slate-200 dark:border-slate-800">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 to-cyan-400 p-0.5 shadow-md flex items-center justify-center overflow-hidden">
+          <div class="w-full h-full bg-[#050C18] rounded-[9px] overflow-hidden flex items-center justify-center">
+            <img src="assets/images/logo-square.jpg" alt="AquaSurge Jet Ski Crest" class="w-full h-full object-cover object-center">
+          </div>
+        </div>
+        <div>
+          <span class="font-heading font-black text-xl text-slate-900 dark:text-white">AQUA<span class="text-amber-500">SURGE</span></span>
+          <span class="block text-[8px] uppercase font-crest tracking-widest text-amber-500 font-bold">Luxury Ocean Club</span>
+        </div>
+      </div>
+      <button type="button" class="drawer-close-btn w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-slate-200" aria-label="Close Mobile Menu">
+        <i class="bi bi-x-lg text-sm"></i>
+      </button>
+    </div>
+
+    <nav class="flex flex-col gap-2 py-6">
+      <a href="index.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-house-door"></i> Home</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+      <a href="activities.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-compass"></i> Activities & Fleet</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+      <a href="safety.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-shield-check"></i> Safety Standards</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+      <a href="contact.html" class="px-4 py-3 rounded-xl font-bold text-amber-500 bg-amber-500/10 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-envelope"></i> Contact</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+      <a href="about.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+        <span class="flex items-center gap-3"><i class="bi bi-info-circle"></i> About</span>
+        <i class="bi bi-chevron-right text-xs"></i>
+      </a>
+    </nav>
+
+    <!-- Mobile Drawer Footer Info -->
+    <div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800 space-y-4">
+      <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+        <i class="bi bi-geo-alt-fill text-amber-500 text-base"></i>
+        <span>Pier 4 VIP Marina & Heliport, Laguna Bay</span>
+      </div>
+      <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+        <i class="bi bi-telephone-fill text-amber-500 text-base"></i>
+        <span>+1 (800) 555-SURGE (24/7 VIP)</span>
+      </div>
+      <a href="booking.html" class="btn-primary w-full py-3.5 text-center text-sm font-bold block rounded-full">
+        Reserve VIP Experience
+      </a>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       PAGE HERO BANNER - VIP CONCIERGE & MARINA PIER 4 (DISTINCT HIGH-RES BACKGROUND)
+       ========================================================================= -->
+  <section class="page-header-banner min-h-[520px] sm:min-h-[580px] lg:min-h-[620px] flex items-center pt-28 pb-16 sm:pt-32 sm:pb-20 text-white relative overflow-hidden border-b border-amber-400/20">
+    <!-- Distinct High-Res VIP Marina & Superyacht Harbor Background Image -->
+    <img src="assets/images/contact-hero.jpg" alt="Pier 4 VIP marina and luxury superyacht harbor at sunset" class="page-header-bg object-[center_18%] sm:object-[center_20%]">
+    <div class="page-header-overlay"></div>
+
+    <div class="glow-orb glow-orb-cyan -top-20 -left-20 w-96 h-96"></div>
+    <div class="glow-orb glow-orb-gold -bottom-20 -right-20 w-96 h-96"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center w-full">
+      <!-- Breadcrumb -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-amber-400/30 text-xs text-slate-200 mb-4 shadow-lg">
+        <a href="index.html" class="hover:text-amber-400 transition-colors">Home</a>
+        <i class="bi bi-chevron-right text-[10px] text-amber-400"></i>
+        <span class="text-amber-300 font-bold">Contact Concierge</span>
+      </div>
+
+      <div class="block">
+        <span class="badge-gold mb-3"><i class="bi bi-compass"></i> Laguna Bay Pier 4 VIP Office</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight leading-tight mb-4 text-white">
+        Contact Concierge & Marina Office
+      </h1>
+      <p class="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+        Connect directly with our master harbor concierge, private charter captains, or arrange custom fleet events at Laguna Bay Pier 4.
+      </p>
+
+      <!-- Live Open / Closed Indicator Pill -->
+      <div class="mt-6 inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-amber-400/40 text-xs sm:text-sm">
+        <span class="status-indicator"></span>
+        <span class="font-extrabold text-amber-300 font-crest">PIER 4 VIP MARINA OPEN NOW:</span>
+        <span class="text-slate-200">Today: 07:30 AM – 07:00 PM (Private Charters 24/7)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       MAIN CONTACT CONCIERGE & MARINA DETAILS
+       ========================================================================= -->
+  <section class="py-16 sm:py-24 bg-slate-50 dark:bg-[#030712] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <!-- Fast-Track VIP Booking Callout Banner -->
+      <div class="mb-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-amber-500/15 via-yellow-400/10 to-cyan-500/15 border border-amber-400/40 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2 text-center md:text-left">
+          <span class="badge-gold"><i class="bi bi-gem"></i> Instant Reservation Portal</span>
+          <h3 class="text-xl sm:text-2xl font-black font-heading text-slate-900 dark:text-white">
+            Looking to Reserve a Supercraft or Jet Ski?
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
+            Skip the inquiry and jump straight to our dedicated VIP Booking Page with live dynamic pricing, zero advance deposit, and instant digital boarding pass.
+          </p>
+        </div>
+        <a href="booking.html" class="btn-primary py-3.5 px-8 rounded-full text-sm font-bold shadow-lg flex items-center gap-2 flex-shrink-0">
+          <i class="bi bi-calendar-check-fill"></i>
+          <span>Go Direct to Booking Page</span>
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Column: Concierge Direct Inquiry Form & Direct Channels (7 cols) -->
+        <div class="lg:col-span-7 space-y-8">
+          
+          <div class="bg-white dark:bg-[#07101F] rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-2xl">
+            <div class="flex items-center justify-between pb-6 mb-8 border-b border-amber-400/20">
+              <div>
+                <span class="badge-gold mb-2"><i class="bi bi-envelope-paper"></i> Direct Dispatch</span>
+                <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white">
+                  Send a Message to Concierge
+                </h2>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center justify-center text-2xl shadow-lg">
+                <i class="bi bi-chat-dots-fill"></i>
+              </div>
+            </div>
+
+            <form id="general-contact-form" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label class="form-label">Full Name *</label>
+                  <input type="text" name="name" placeholder="e.g. Julian Sterling" required class="form-input">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email Address *</label>
+                  <input type="email" name="email" placeholder="sterling@vip-ocean.com" required class="form-input">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label class="form-label">Phone / WhatsApp</label>
+                  <input type="tel" name="phone" placeholder="+1 (555) 019-2834" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Inquiry Subject *</label>
+                  <select name="subject" class="form-select">
+                    <option value="Private Charter">Private Yacht / Catamaran Charter</option>
+                    <option value="Group Event">Group Fleet Retreat / Corporate Event</option>
+                    <option value="Heliport Transfer">VIP Heliport & Marina Berth Inquiry</option>
+                    <option value="Membership">Privé Ocean Club Membership</option>
+                    <option value="General Question" selected>General Concierge Inquiry</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Detailed Message *</label>
+                <textarea name="message" rows="4" placeholder="Tell us how we can assist you, dates considered, fleet preferences, or custom arrangements..." required class="form-textarea"></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary w-full py-3.5 rounded-full text-sm font-bold shadow-xl flex items-center justify-center gap-2">
+                <i class="bi bi-send-fill"></i>
+                <span>Send VIP Message to Harbor Concierge</span>
+              </button>
+
+              <p class="text-xs text-center text-slate-500 dark:text-slate-400">
+                <i class="bi bi-clock-history text-amber-500"></i> Typical concierge response time: Under 30 minutes during marina hours.
+              </p>
+            </form>
+          </div>
+
+          <!-- Direct Contact Channels Cards (4 Cards) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-2xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 space-y-2 shadow-md">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center text-lg">
+                <i class="bi bi-telephone-fill"></i>
+              </div>
+              <h4 class="font-bold text-sm text-slate-900 dark:text-white">24/7 VIP Phone Hotline</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Toll-free worldwide assistance for active members.</p>
+              <a href="tel:+18005557874" class="inline-block text-amber-500 font-bold text-sm hover:underline">+1 (800) 555-SURGE</a>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 space-y-2 shadow-md">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center text-lg">
+                <i class="bi bi-whatsapp"></i>
+              </div>
+              <h4 class="font-bold text-sm text-slate-900 dark:text-white">WhatsApp VIP Concierge</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Fast messaging, live photos, and location pin sharing.</p>
+              <a href="https://wa.me/18005557874" target="_blank" rel="noopener noreferrer" class="inline-block text-emerald-500 font-bold text-sm hover:underline">+1 (800) 555-7874</a>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 space-y-2 shadow-md">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center text-lg">
+                <i class="bi bi-broadcast"></i>
+              </div>
+              <h4 class="font-bold text-sm text-slate-900 dark:text-white">Marine VHF Radio</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Hailing channel for inbound vessels and tenders.</p>
+              <span class="inline-block text-cyan-400 font-bold text-sm">VHF Channels 16 & 68</span>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 space-y-2 shadow-md">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center text-lg">
+                <i class="bi bi-envelope-check-fill"></i>
+              </div>
+              <h4 class="font-bold text-sm text-slate-900 dark:text-white">Concierge Desk Email</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Corporate proposals, charter agreements & invoices.</p>
+              <a href="mailto:concierge@aquasurge-ocean.com" class="inline-block text-purple-400 font-bold text-sm hover:underline">concierge@aquasurge-ocean.com</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Marina Pier 4 Location, Hours & Map (5 cols) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Pier 4 Location Card -->
+          <div class="bg-white dark:bg-[#07101F] rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-xs uppercase font-crest font-bold tracking-widest text-amber-500">Laguna Bay Headquarters</span>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-500 font-bold border border-amber-500/20">Pier 4 Marina</span>
+            </div>
+
+            <div class="space-y-4 text-xs sm:text-sm">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-geo-alt-fill text-lg"></i>
+                </div>
+                <div>
+                  <strong class="block font-bold text-slate-800 dark:text-slate-200">Marina Address & Valet Drop-off:</strong>
+                  <p class="text-slate-500 dark:text-slate-400">Pier 4 VIP Operations Hut, Laguna Bay Marina, North Promenade Suite 12, Laguna Bay, CA</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-compass-fill text-lg"></i>
+                </div>
+                <div>
+                  <strong class="block font-bold text-slate-800 dark:text-slate-200">GPS & Nautical Coordinates:</strong>
+                  <p class="text-slate-500 dark:text-slate-400">33°32'44.2"N 117°47'19.1"W • Marina Chart 18746</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-clock-fill text-lg"></i>
+                </div>
+                <div>
+                  <strong class="block font-bold text-slate-800 dark:text-slate-200">Marina Operating Hours:</strong>
+                  <p class="text-slate-500 dark:text-slate-400">Monday – Sunday: 07:30 AM – 07:00 PM (Private Charters 24/7)</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Map Card -->
+            <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+              <span class="text-xs font-crest font-bold uppercase tracking-wider text-amber-500 block mb-3">Harbor Pier Location Map</span>
+              <div class="relative w-full h-52 rounded-2xl overflow-hidden border border-amber-400/30 bg-slate-900 group">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=85" alt="Aerial view of Laguna Bay Marina Pier 4" class="w-full h-full object-cover filter brightness-75 group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white p-4 text-center">
+                  <div class="w-11 h-11 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xl shadow-xl animate-bounce font-bold">
+                    <i class="bi bi-geo-alt-fill"></i>
+                  </div>
+                  <strong class="font-bold text-sm mt-2 text-white">Pier 4 VIP Marina Check-in</strong>
+                  <span class="text-[11px] text-amber-300 font-semibold">Complimentary valet parking & heliport transfer</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Arrival Directions Box -->
+          <div class="p-6 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs space-y-2 text-slate-700 dark:text-slate-300">
+            <h4 class="font-bold text-amber-500 flex items-center gap-2 text-sm">
+              <i class="bi bi-car-front-fill"></i> VIP Arrival & Valet Parking
+            </h4>
+            <p class="leading-relaxed">
+              When arriving via Pacific Coast Highway, follow signage for <strong>Laguna Bay Harbor Pier 4</strong>. White-glove valet attendants will take your vehicle directly at the marina archway.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Marina FAQs -->
+      <div class="mt-20 pt-16 border-t border-slate-200 dark:border-slate-800 max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+          <span class="badge-gold mb-2"><i class="bi bi-question-circle"></i> Marina Guide</span>
+          <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white">
+            Marina & Concierge FAQs
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="group bg-white dark:bg-[#07101F] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 open:border-amber-400/50 transition-colors">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white cursor-pointer flex items-center justify-between list-none">
+              <span>Where do I park when arriving at Pier 4?</span>
+              <i class="bi bi-chevron-down group-open:rotate-180 transition-transform text-amber-500"></i>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Complimentary valet parking is provided for all AquaSurge clients directly at the Pier 4 Marina Gatehouse. Attendants will park and secure your vehicle for the duration of your adventure.
+            </p>
+          </details>
+
+          <details class="group bg-white dark:bg-[#07101F] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 open:border-amber-400/50 transition-colors">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white cursor-pointer flex items-center justify-between list-none">
+              <span>How do I hail the marina dockmaster via marine VHF?</span>
+              <i class="bi bi-chevron-down group-open:rotate-180 transition-transform text-amber-500"></i>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Inbound tenders and yachts may hail "AquaSurge Pier 4 Harbor Concierge" on VHF Channel 16, then shift to working Channel 68 for slip allocation and docking clearance.
+            </p>
+          </details>
+
+          <details class="group bg-white dark:bg-[#07101F] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 open:border-amber-400/50 transition-colors">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white cursor-pointer flex items-center justify-between list-none">
+              <span>Can I book large corporate retreats or wedding sunset charters?</span>
+              <i class="bi bi-chevron-down group-open:rotate-180 transition-transform text-amber-500"></i>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Yes, our event team handles private charters of up to 40 guests across our catamaran fleet with catering, onboard champagne sommelier, and custom drone videography. Contact us directly using the inquiry form above.
+            </p>
+          </details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="bg-white dark:bg-[#050C18] border-t border-slate-200 dark:border-slate-800 pt-16 pb-12 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12 pb-12 border-b border-slate-200 dark:border-slate-800">
+        
+        <div class="lg:col-span-4 space-y-4">
+          <a href="index.html" class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-cyan-400 p-0.5 shadow-md flex items-center justify-center overflow-hidden">
+              <div class="w-full h-full bg-[#050C18] rounded-[10px] overflow-hidden flex items-center justify-center">
+                <img src="assets/images/logo-square.jpg" alt="AquaSurge Jet Ski Crest" class="w-full h-full object-cover object-center">
+              </div>
+            </div>
+            <div>
+              <span class="font-heading font-black text-2xl text-slate-900 dark:text-white">AQUA<span class="text-amber-500 dark:text-amber-400">SURGE</span></span>
+              <span class="block text-[8px] uppercase font-crest tracking-widest text-amber-600 dark:text-amber-400 font-bold">Luxury Ocean Club</span>
+            </div>
+          </a>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Laguna Bay's premier 5-star beach water sports and luxury ocean club. Combining 300hp supercharged performance with world-class marine safety since 2012.
+          </p>
+        </div>
+
+        <div class="lg:col-span-2 space-y-4">
+          <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">Quick Navigation</h4>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+            <li><a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Home</a></li>
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Activities & Fleet</a></li>
+            <li><a href="safety.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Safety Standards</a></li>
+            <li><a href="contact.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Contact</a></li>
+            <li><a href="about.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">About</a></li>
+            <li><a href="booking.html" class="text-amber-500 font-bold hover:text-amber-400 transition-colors">VIP Reservation Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">Featured Supercraft</h4>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Sea-Doo RXT-X 300 Jet Ski</a></li>
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">SkyHigh Royal Parasailing</a></li>
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Seabob F5 SR Underwater Diver</a></li>
+            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Sunset Catamaran Cruise</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">VIP Privé Club</h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400">Subscribe for early swell telemetry and complimentary 4K drone video clip vouchers.</p>
+          <form class="newsletter-form space-y-2">
+            <input type="email" placeholder="Your email address" required class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-amber-400 shadow-sm transition-colors">
+            <button type="submit" class="btn-primary w-full py-2.5 rounded-full text-xs font-bold shadow-md">
+              Join Privé Club
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-4">
+        <p>© 2026 AquaSurge Luxury Ocean Club. USCG & PADI 5-Star Certified. All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="safety.html" class="hover:text-amber-500">Safety Regulations</a>
+          <a href="contact.html" class="hover:text-amber-500">Harbor Operations</a>
+          <a href="booking.html" class="hover:text-amber-500">Book VIP</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div id="wishlist-modal" class="modal-overlay">
+    <div class="modal-card max-w-lg w-full p-6" role="dialog" aria-modal="true" aria-label="VIP Wishlist">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-2">
+          <i class="bi bi-heart-fill text-rose-500"></i>
+          <h3 class="font-bold text-lg font-heading text-slate-900 dark:text-white">Your Saved Fleet</h3>
+        </div>
+        <button type="button" data-modal-close="wishlist-modal" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-slate-200" aria-label="Close">
+          <i class="bi bi-x-lg text-sm"></i>
+        </button>
+      </div>
+      <div id="wishlist-items-container" class="py-4"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/booking.js"></script>
+</body>
+</html>
