@@ -12,22 +12,32 @@
   let isGroupPricing = false;
 
   function initActivitiesPage() {
+    // Restore saved group pricing state if persisted
+    try {
+      const savedGroup = sessionStorage.getItem('aquasurge_group_pricing');
+      if (savedGroup === 'true') {
+        isGroupPricing = true;
+        const groupRadio = document.querySelector('input[name="pricing-mode"][value="group"]');
+        if (groupRadio) groupRadio.checked = true;
+      }
+    } catch (e) {}
+
+    initUrlParams();
     renderCategoryFilterButtons();
     renderCombos();
     renderActivities();
     initFilterEventListeners();
-    initUrlParams();
   }
 
-  // Check URL parameters for preset category (e.g. activities.html?category=thrill)
+  // Check URL parameters & session storage for preset category (e.g. activities.html?category=thrill)
   function initUrlParams() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const cat = urlParams.get('category');
-    if (cat) {
-      currentCategory = cat;
-      updateFilterButtonsUI();
-      renderActivities();
-    }
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cat = urlParams.get('category') || sessionStorage.getItem('aquasurge_category');
+      if (cat && ['all', 'thrill', 'family', 'scenic', 'underwater'].includes(cat)) {
+        currentCategory = cat;
+      }
+    } catch (e) {}
   }
 
   // Render Filter Tab Buttons
@@ -57,11 +67,21 @@
       </button>
     `).join('');
 
-    // Attach click listeners
+    // Attach click listeners with button state persistence across reloads
     const buttons = tabsContainer.querySelectorAll('.category-tab-btn');
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         currentCategory = btn.getAttribute('data-category');
+        try {
+          sessionStorage.setItem('aquasurge_category', currentCategory);
+          const currentPath = window.location.pathname.split('/').pop() || 'activities.html';
+          const queryPart = currentCategory === 'all' ? '' : '?category=' + encodeURIComponent(currentCategory);
+          const newUrl = currentPath + queryPart + window.location.hash;
+          history.replaceState(null, '', newUrl);
+          sessionStorage.setItem('aquasurge_active_url', newUrl);
+          sessionStorage.setItem('aquasurge_active_page', 'activities.html');
+          sessionStorage.removeItem('aquasurge_home_clicked');
+        } catch (e) {}
         updateFilterButtonsUI();
         renderActivities();
       });
@@ -139,6 +159,12 @@
         resetBtn.addEventListener('click', () => {
           currentCategory = 'all';
           currentSearchQuery = '';
+          try {
+            sessionStorage.removeItem('aquasurge_category');
+            const currentPath = window.location.pathname.split('/').pop() || 'activities.html';
+            history.replaceState(null, '', currentPath);
+            sessionStorage.setItem('aquasurge_active_url', currentPath);
+          } catch (e) {}
           const searchInput = document.getElementById('activity-search-input');
           if (searchInput) searchInput.value = '';
           updateFilterButtonsUI();
@@ -268,54 +294,54 @@
 
     container.innerHTML = combos.map(combo => `
       <div class="relative bg-white dark:bg-[#07101F] border-2 ${
-        combo.popular ? 'border-amber-400 shadow-2xl scale-100 lg:-translate-y-2' : 'border-slate-200 dark:border-slate-800'
-      } rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:border-amber-400">
+        combo.popular ? 'border-amber-400 shadow-xl scale-100 lg:-translate-y-1' : 'border-slate-200 dark:border-slate-800'
+      } rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:border-amber-400">
         
         ${combo.popular ? `
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 text-[11px] font-black uppercase tracking-wider px-5 py-1.5 rounded-full shadow-lg ring-2 ring-yellow-300">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 text-[10px] font-black uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md ring-2 ring-yellow-300 whitespace-nowrap">
             ★ Most Requested VIP Experience ★
           </div>
         ` : ''}
 
         <div>
-          <div class="flex items-start justify-between gap-4 mb-3">
-            <div>
-              <span class="text-xs font-bold text-amber-500 uppercase tracking-wider">${combo.badge}</span>
-              <h3 class="text-xl sm:text-2xl font-black font-heading mt-1">${combo.name}</h3>
+          <div class="flex items-start justify-between gap-2.5 mb-2.5">
+            <div class="flex-1 min-w-0">
+              <span class="text-[10px] font-bold text-amber-500 uppercase tracking-wider block truncate">${combo.badge}</span>
+              <h3 class="text-sm sm:text-base font-black font-heading mt-0.5 leading-snug line-clamp-2 min-h-[38px] text-slate-900 dark:text-white">${combo.name}</h3>
             </div>
-            <div class="text-right">
-              <span class="text-xs line-through text-slate-400 block">$${combo.originalPrice}</span>
-              <span class="text-3xl font-black text-slate-900 dark:text-white">$${combo.price}</span>
+            <div class="text-right flex-shrink-0">
+              <span class="text-[11px] line-through text-slate-400 block">$${combo.originalPrice}</span>
+              <span class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">$${combo.price}</span>
             </div>
           </div>
 
-          <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm mb-4 leading-relaxed">${combo.description}</p>
+          <p class="text-slate-600 dark:text-slate-300 text-xs mb-2.5 leading-relaxed line-clamp-2 min-h-[32px]">${combo.description}</p>
 
-          <div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold px-3 py-1.5 rounded-full mb-6 border border-emerald-500/20">
-            <i class="bi bi-tag-fill"></i> ${combo.savings}
+          <div class="inline-flex items-center gap-1.5 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold px-2.5 py-1 rounded-full mb-3.5 border border-emerald-500/20">
+            <i class="bi bi-tag-fill text-[10px]"></i> <span>${combo.savings}</span>
           </div>
 
           <!-- Included Activities -->
-          <div class="space-y-2 mb-6">
-            <span class="text-xs uppercase font-bold text-slate-400 tracking-wider block">VIP Privileges Included:</span>
+          <div class="space-y-1.5 mb-4">
+            <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider block">VIP Privileges Included:</span>
             ${combo.activitiesIncluded.map(item => `
-              <div class="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
-                <i class="bi bi-patch-check-fill text-amber-400 text-base flex-shrink-0"></i>
-                <span>${item}</span>
+              <div class="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-200">
+                <i class="bi bi-patch-check-fill text-amber-400 text-sm flex-shrink-0"></i>
+                <span class="truncate">${item}</span>
               </div>
             `).join('')}
           </div>
         </div>
 
-        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 mt-auto">
-          <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4">
+        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-auto">
+          <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-3">
             <span><i class="bi bi-clock-fill text-cyan-400"></i> ${combo.duration}</span>
-            <span><i class="bi bi-people-fill text-amber-400"></i> ${combo.target}</span>
+            <span class="truncate max-w-[120px] text-right" title="${combo.target}"><i class="bi bi-people-fill text-amber-400"></i> ${combo.target}</span>
           </div>
 
           <button type="button" onclick="window.AquaSurge.bookActivity('${combo.id}')" class="w-full ${
             combo.popular ? 'btn-primary' : 'btn-outline-ocean'
-          } py-3 text-sm rounded-full font-bold flex items-center justify-center gap-2">
+          } py-2.5 text-xs sm:text-sm rounded-full font-bold flex items-center justify-center gap-2 shadow-sm">
             <i class="bi bi-gem"></i> Reserve VIP Package
           </button>
         </div>
@@ -349,6 +375,9 @@
     pricingRadios.forEach(radio => {
       radio.addEventListener('change', (e) => {
         isGroupPricing = e.target.value === 'group';
+        try {
+          sessionStorage.setItem('aquasurge_group_pricing', isGroupPricing ? 'true' : 'false');
+        } catch (e) {}
         renderActivities();
         if (window.AquaSurge) {
           window.AquaSurge.showToast(isGroupPricing ? 'Applied VIP Group Rate (15% OFF for 4+ Guests)' : 'Showing standard per person pricing', 'info');

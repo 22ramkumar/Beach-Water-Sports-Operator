@@ -300,9 +300,9 @@ const AQUASURGE_DATA = {
       badge: "Sunset Champagne",
       shortDesc: "Sail into the sunset aboard our 52ft twin-hull catamaran with Moët & Chandon champagne & charcuterie.",
       fullDesc: "Unwind in true French Riviera opulence! Step onto the teak decks of our 52-foot ocean catamaran as twilight paints the horizon in magenta and molten gold. Lounge on the forward trampolines with chilled Moët & Chandon champagne, artisan charcuterie boards, and soothing sunset beats.",
-      image: "https://images.unsplash.com/photo-1773593893090-27d17a880a07?auto=format&fit=crop&w=1200&q=85",
+      image: "assets/images/catamaran-champagne-cruise.jpg",
       gallery: [
-        "https://images.unsplash.com/photo-1773593893090-27d17a880a07?auto=format&fit=crop&w=800&q=85",
+        "assets/images/catamaran-champagne-cruise.jpg",
         "https://images.unsplash.com/photo-1772990490123-2c9e1ae63c16?auto=format&fit=crop&w=800&q=85",
         "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=85"
       ],

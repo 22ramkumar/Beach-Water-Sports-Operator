@@ -133,6 +133,15 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Scroll Offset Anchor Fix for Sticky Header */
+#booking-form-section,
+#booking-portal-card,
+#booking-form,
+[id="booking-form-section"],
+[id="booking-portal-card"] {
+  scroll-margin-top: calc(var(--navbar-height, 64px) + 32px);
+}
+
 body {
   background-color: var(--bg-page);
   color: var(--text-main);
@@ -240,11 +249,75 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   4. RTL (RIGHT-TO-LEFT) LOGICAL PROPERTIES
+   4. RTL (RIGHT-TO-LEFT) LOGICAL PROPERTIES & BIDI PUNCTUATION ANCHORING
    -------------------------------------------------------------------------- */
 [dir="rtl"] {
   direction: rtl;
   text-align: right;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* BiDi Punctuation Anchoring:
+   Ensures that trailing punctuation marks (periods, commas, question marks,
+   exclamation marks, colons, brackets, parentheses, quotes) always anchor
+   on the RIGHT side of the text across the entire website when switching
+   between RTL and LTR layouts. */
+[dir="rtl"] p,
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6,
+[dir="rtl"] span,
+[dir="rtl"] a,
+[dir="rtl"] button,
+[dir="rtl"] li,
+[dir="rtl"] label,
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select,
+[dir="rtl"] blockquote,
+[dir="rtl"] small,
+[dir="rtl"] strong,
+[dir="rtl"] em,
+[dir="rtl"] b,
+[dir="rtl"] i,
+[dir="rtl"] td,
+[dir="rtl"] th,
+[dir="rtl"] figcaption,
+[dir="rtl"] .badge,
+[dir="rtl"] .pill,
+[dir="rtl"] .vip-badge,
+[dir="rtl"] .card-label,
+[dir="rtl"] .form-label,
+[dir="rtl"] .toast-body,
+[dir="rtl"] .modal-body,
+[dir="rtl"] .dropdown-menu,
+[dir="rtl"] .accordion-body,
+[dir="rtl"] [class*="desc"],
+[dir="rtl"] [class*="title"],
+[dir="rtl"] [class*="subtitle"],
+[dir="rtl"] [class*="text-"] {
+  unicode-bidi: plaintext;
+}
+
+[dir="ltr"] p,
+[dir="ltr"] h1, [dir="ltr"] h2, [dir="ltr"] h3, [dir="ltr"] h4, [dir="ltr"] h5, [dir="ltr"] h6,
+[dir="ltr"] span,
+[dir="ltr"] a,
+[dir="ltr"] button,
+[dir="ltr"] li,
+[dir="ltr"] label,
+[dir="ltr"] input,
+[dir="ltr"] textarea,
+[dir="ltr"] select,
+[dir="ltr"] blockquote,
+[dir="ltr"] small,
+[dir="ltr"] strong,
+[dir="ltr"] em,
+[dir="ltr"] b,
+[dir="ltr"] i {
+  unicode-bidi: normal;
 }
 
 [dir="rtl"] .bi-chevron-right::before { content: "\f284"; }
@@ -401,6 +474,15 @@ img {
   border-color: var(--gold-primary);
   color: #996515;
   box-shadow: 0 0 16px rgba(212, 175, 55, 0.3);
+}
+
+.rtl-toggle-icon {
+  display: inline-block;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.rtl-toggle-btn:hover .rtl-toggle-icon {
+  transform: scale(1.15);
 }
 
 /* Header Action Buttons - Dark Mode */

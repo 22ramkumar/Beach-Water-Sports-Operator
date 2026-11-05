@@ -91,7 +91,39 @@
 
       <!-- Desktop Navigation Menu -->
       <nav class="hidden lg:flex items-center gap-5 xl:gap-6 flex-nowrap whitespace-nowrap">
-        <a href="index.html" class="nav-link">Home</a>
+        <!-- Home Dropdown -->
+        <div class="relative group">
+          <a href="index.html" class="nav-link inline-flex items-center gap-1.5 cursor-pointer">
+            <span>Home</span>
+            <i class="bi bi-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform duration-200"></i>
+          </a>
+          <!-- Dropdown Menu -->
+          <div class="absolute top-full left-0 pt-2 hidden group-hover:block transition-all duration-200 z-50">
+            <div class="w-60 p-2 rounded-2xl bg-white/95 dark:bg-[#07101F]/95 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-2xl space-y-1">
+              <a href="index.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-200 font-bold text-xs transition-colors group/item">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center text-xs"><i class="bi bi-water"></i></span>
+                  <div>
+                    <div class="font-bold">Home 1</div>
+                    <div class="text-[10px] text-slate-500 dark:text-slate-400 font-normal">Grand Riviera Classic</div>
+                  </div>
+                </div>
+                <i class="bi bi-arrow-right text-[10px] text-amber-500 opacity-0 group-hover/item:opacity-100 transition-opacity"></i>
+              </a>
+              <a href="home-2.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-200 font-bold text-xs transition-colors group/item">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-lg bg-cyan-500/10 text-cyan-500 flex items-center justify-center text-xs"><i class="bi bi-lightning-charge-fill"></i></span>
+                  <div>
+                    <div class="font-bold flex items-center gap-1.5">Home 2 <span class="bg-amber-400 text-slate-950 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">NEW</span></div>
+                    <div class="text-[10px] text-slate-500 dark:text-slate-400 font-normal">Supercraft Ocean Club</div>
+                  </div>
+                </div>
+                <i class="bi bi-arrow-right text-[10px] text-amber-500 opacity-0 group-hover/item:opacity-100 transition-opacity"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <a href="activities.html" class="nav-link">Activities & Fleet</a>
         <a href="safety.html" class="nav-link">Safety Standards</a>
         <a href="contact.html" class="nav-link">Contact</a>
@@ -109,11 +141,11 @@
           <i class="bi bi-moon-stars-fill theme-toggle-icon text-base"></i>
         </button>
 
-        <button type="button" class="rtl-toggle-btn icon-btn px-1.5 text-[11px] font-bold" aria-label="Toggle Direction" title="Switch RTL / LTR Layout">
-          <span class="rtl-status-label">RTL</span>
+        <button type="button" class="rtl-toggle-btn icon-btn" aria-label="Toggle RTL / LTR Layout" title="Switch RTL / LTR Layout">
+          <i class="bi bi-arrow-left-right rtl-toggle-icon text-base"></i>
         </button>
 
-        <a href="booking.html" class="hidden sm:inline-flex btn-primary text-xs py-2 px-3.5 rounded-full font-bold">
+        <a href="booking.html#booking-form-section" class="hidden sm:inline-flex btn-primary text-xs py-2 px-3.5 rounded-full font-bold">
           <i class="bi bi-gem"></i>
           <span>Book VIP</span>
         </a>
@@ -147,10 +179,17 @@
     </div>
 
     <nav class="flex flex-col gap-2 py-6">
-      <a href="index.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
-        <span class="flex items-center gap-3"><i class="bi bi-house-door"></i> Home</span>
-        <i class="bi bi-chevron-right text-xs"></i>
-      </a>
+      <div class="space-y-1 pb-2 border-b border-slate-200 dark:border-slate-800">
+        <div class="px-4 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Home Demos</div>
+        <a href="index.html" class="px-4 py-2.5 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+          <span class="flex items-center gap-2.5 text-xs"><i class="bi bi-water text-amber-500"></i> Home 1 - Grand Riviera</span>
+          <i class="bi bi-chevron-right text-xs"></i>
+        </a>
+        <a href="home-2.html" class="px-4 py-2.5 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
+          <span class="flex items-center gap-2.5 text-xs"><i class="bi bi-lightning-charge-fill text-cyan-400"></i> Home 2 - Supercraft Club <span class="bg-amber-400 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded-full">NEW</span></span>
+          <i class="bi bi-chevron-right text-xs"></i>
+        </a>
+      </div>
       <a href="activities.html" class="px-4 py-3 rounded-xl font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 flex items-center justify-between">
         <span class="flex items-center gap-3"><i class="bi bi-compass"></i> Activities & Fleet</span>
         <i class="bi bi-chevron-right text-xs"></i>
@@ -179,7 +218,7 @@
         <i class="bi bi-telephone-fill text-amber-500 text-base"></i>
         <span>+1 (800) 555-SURGE (24/7 VIP)</span>
       </div>
-      <a href="booking.html" class="btn-primary w-full py-3.5 text-center text-sm font-bold block rounded-full">
+      <a href="booking.html#booking-form-section" class="btn-primary w-full py-3.5 text-center text-sm font-bold block rounded-full">
         Reserve VIP Experience
       </a>
     </div>
@@ -228,33 +267,33 @@
       <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-800">
         <div class="pt-3 md:pt-0">
           <div class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white">
-            <span class="counter-val" data-target="14">0</span>+
+            <span class="stat-counter" data-target="14" data-suffix="+">14+</span>
           </div>
           <div class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">Years of Excellence</div>
         </div>
         <div class="pt-3 md:pt-0">
           <div class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white">
-            <span class="counter-val" data-target="42000">0</span>+
+            <span class="stat-counter" data-target="50000" data-suffix="+">50,000+</span>
           </div>
           <div class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">VIP Guests Hosted</div>
         </div>
         <div class="pt-3 md:pt-0">
           <div class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white">
-            <span class="counter-val" data-target="100">0</span>%
+            <span class="stat-counter" data-target="100" data-suffix="%">100%</span>
           </div>
           <div class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">Incident-Free Record</div>
         </div>
         <div class="pt-3 md:pt-0">
           <div class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white">
-            <span class="counter-val" data-target="18">0</span>
+            <span class="stat-counter" data-target="99.8" data-suffix="%" data-decimals="1">99.8%</span>
           </div>
-          <div class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">Elite Fleet Vessels</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">VIP Satisfaction Rate</div>
         </div>
         <div class="pt-3 md:pt-0">
           <div class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white">
-            <span class="counter-val" data-target="28">0</span>
+            <span class="stat-counter" data-target="100" data-suffix="%">100%</span>
           </div>
-          <div class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">Certified Master Captains</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">USCG Certified Fleet</div>
         </div>
       </div>
     </div>
@@ -268,26 +307,87 @@
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-        <!-- Left: Image Showcase with Luxury Floating Badge -->
+        <!-- Left: Image Showcase Slider with Luxury Floating Badge -->
         <div class="lg:col-span-5 relative">
-          <div class="relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl">
-            <img src="assets/images/contact-hero.jpg" alt="AquaSurge Laguna Bay VIP Marina at Pier 4" class="w-full h-[460px] object-cover object-center transform hover:scale-105 transition-transform duration-700">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div id="story-marina-slider" class="relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl h-[480px] sm:h-[500px] bg-slate-950 group select-none">
             
-            <div class="absolute bottom-6 left-6 right-6 text-white">
-              <span class="text-[10px] font-crest uppercase font-bold tracking-widest text-amber-400 bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm">Pier 4 VIP Marina Headquarters</span>
-              <h3 class="text-xl font-heading font-black mt-2">Laguna Bay's Private Marine Sanctuary</h3>
-              <p class="text-xs text-slate-300 mt-1">Exclusive deep-water pontoon docks, private helipad, and oceanfront champagne terrace.</p>
+            <!-- Slide 1: Pier 4 Marina -->
+            <div class="story-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10">
+              <img src="assets/images/story-pier-marina.jpg" alt="AquaSurge Laguna Bay VIP Marina at Pier 4" class="w-full h-full object-cover object-center transition-transform duration-1000">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10"></div>
+              <div class="absolute bottom-14 left-6 right-6 text-white z-20">
+                <span class="text-[10px] font-crest uppercase font-bold tracking-widest text-amber-400 bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm border border-amber-400/30">Pier 4 VIP Marina Headquarters</span>
+                <h3 class="text-xl font-heading font-black mt-2 text-white">Laguna Bay's Private Marine Sanctuary</h3>
+                <p class="text-xs text-slate-300 mt-1 leading-relaxed">Exclusive deep-water pontoon docks, private helipad, and oceanfront champagne terrace.</p>
+              </div>
             </div>
+
+            <!-- Slide 2: Supercraft Fleet & Deep Water Access -->
+            <div class="story-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 pointer-events-none z-0">
+              <img src="assets/images/story-fleet-berth.jpg" alt="AquaSurge Ultra-Luxury Supercraft and Jet Ski Fleet" class="w-full h-full object-cover object-center transition-transform duration-1000">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10"></div>
+              <div class="absolute bottom-14 left-6 right-6 text-white z-20">
+                <span class="text-[10px] font-crest uppercase font-bold tracking-widest text-amber-400 bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm border border-amber-400/30">2026 Fleet Berth</span>
+                <h3 class="text-xl font-heading font-black mt-2 text-white">Direct Deep-Water Craft Access</h3>
+                <p class="text-xs text-slate-300 mt-1 leading-relaxed">Board 300hp supercharged craft and electric Seabob sleds straight from teak berths.</p>
+              </div>
+            </div>
+
+            <!-- Slide 3: Riviera Sun Deck & Pool Lounge -->
+            <div class="story-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 pointer-events-none z-0">
+              <img src="assets/images/story-sundeck-lounge.jpg" alt="The Sun Deck and VIP Ocean Infinity Pool" class="w-full h-full object-cover object-center transition-transform duration-1000">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10"></div>
+              <div class="absolute bottom-14 left-6 right-6 text-white z-20">
+                <span class="text-[10px] font-crest uppercase font-bold tracking-widest text-amber-400 bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm border border-amber-400/30">The Sun Deck & Lounge</span>
+                <h3 class="text-xl font-heading font-black mt-2 text-white">Pre & Post-Voyage Hospitality</h3>
+                <p class="text-xs text-slate-300 mt-1 leading-relaxed">Relax with complimentary artisan espresso, chilled eucalyptus towels, and champagne.</p>
+              </div>
+            </div>
+
+            <!-- Slide 4: Crystal Lagoon & Coral Waters -->
+            <div class="story-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 pointer-events-none z-0">
+              <img src="assets/images/story-laguna-sanctuary.jpg" alt="Pristine Crystal Lagoon and Protected Bay Waters" class="w-full h-full object-cover object-center transition-transform duration-1000">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10"></div>
+              <div class="absolute bottom-14 left-6 right-6 text-white z-20">
+                <span class="text-[10px] font-crest uppercase font-bold tracking-widest text-amber-400 bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm border border-amber-400/30">Laguna Bay Sanctuary</span>
+                <h3 class="text-xl font-heading font-black mt-2 text-white">Protected Marine Conservation Bay</h3>
+                <p class="text-xs text-slate-300 mt-1 leading-relaxed">Pristine clarity with USCG patrol craft ensuring safe, incident-free waters.</p>
+              </div>
+            </div>
+
+            <!-- Navigation Controls (Previous & Next Glass Buttons) -->
+            <button type="button" class="story-prev-btn absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/60 hover:bg-amber-500 text-white hover:text-slate-950 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all z-30 opacity-80 hover:opacity-100 shadow-lg" aria-label="Previous Slide">
+              <i class="bi bi-chevron-left text-sm"></i>
+            </button>
+            <button type="button" class="story-next-btn absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/60 hover:bg-amber-500 text-white hover:text-slate-950 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all z-30 opacity-80 hover:opacity-100 shadow-lg" aria-label="Next Slide">
+              <i class="bi bi-chevron-right text-sm"></i>
+            </button>
+
+            <!-- Bottom Navigation Bar: Dots & Counter -->
+            <div class="absolute bottom-4 left-6 right-6 flex items-center justify-between z-30">
+              <!-- Dot Indicators -->
+              <div class="flex items-center gap-1.5">
+                <button type="button" class="story-dot h-2 w-6 rounded-full bg-amber-400 transition-all duration-300" aria-label="Go to Slide 1" aria-current="true"></button>
+                <button type="button" class="story-dot h-2 w-2 rounded-full bg-white/40 hover:bg-white/80 transition-all duration-300" aria-label="Go to Slide 2"></button>
+                <button type="button" class="story-dot h-2 w-2 rounded-full bg-white/40 hover:bg-white/80 transition-all duration-300" aria-label="Go to Slide 3"></button>
+                <button type="button" class="story-dot h-2 w-2 rounded-full bg-white/40 hover:bg-white/80 transition-all duration-300" aria-label="Go to Slide 4"></button>
+              </div>
+
+              <!-- Counter Badge -->
+              <span class="story-counter text-[11px] font-bold text-white/90 bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/10 shadow">
+                1 / 4
+              </span>
+            </div>
+
           </div>
 
-          <!-- Floating Luxury Distinction Card -->
-          <div class="hidden sm:block absolute -top-6 -right-6 bg-white dark:bg-[#07101F] p-4 rounded-2xl border border-amber-400/40 shadow-xl max-w-[220px]">
-            <div class="flex items-center gap-2 text-amber-500 mb-1">
-              <i class="bi bi-trophy-fill text-lg"></i>
-              <span class="font-heading font-bold text-xs">Best Luxury Operator</span>
+          <!-- Floating Luxury Distinction Card (Small Sizing) -->
+          <div class="hidden sm:block absolute -top-2 -right-2 sm:-top-2.5 sm:-right-2.5 bg-white/95 dark:bg-[#07101F]/95 backdrop-blur-md px-2.5 py-1.5 sm:px-2.5 sm:py-2 rounded-xl border border-amber-400/40 shadow-lg max-w-[125px] z-30 pointer-events-auto">
+            <div class="flex items-center gap-1 text-amber-500 mb-0.5">
+              <i class="bi bi-trophy-fill text-[10px]"></i>
+              <span class="font-heading font-bold text-[9px] leading-tight">Best Luxury Operator</span>
             </div>
-            <p class="text-[11px] text-slate-600 dark:text-slate-300">Voted #1 Coastal Ocean Club 2024 & 2025 by World Luxury Travel Guide.</p>
+            <p class="text-[7.5px] sm:text-[8px] text-slate-600 dark:text-slate-300 leading-tight">Voted #1 Coastal Ocean Club 2024 & 2025 by World Luxury Travel Guide.</p>
           </div>
         </div>
 
@@ -617,7 +717,7 @@
         </p>
       </div>
       <div class="flex items-center gap-4 flex-shrink-0">
-        <a href="booking.html" class="btn-primary py-3.5 px-8 font-black text-sm rounded-full shadow-2xl">
+        <a href="booking.html#booking-form-section" class="btn-primary py-3.5 px-8 font-black text-sm rounded-full shadow-2xl">
           Reserve VIP Experience
         </a>
         <a href="activities.html" class="btn-secondary py-3.5 px-6 font-bold text-sm rounded-full">
@@ -627,90 +727,106 @@
     </div>
   </section>
 
-  <!-- =========================================================================
+      <!-- =========================================================================
        FOOTER (LIGHT & DARK ADAPTIVE)
        ========================================================================= -->
   <footer class="site-footer bg-slate-100 dark:bg-[#030712] text-slate-800 dark:text-white pt-16 sm:pt-20 pb-12 border-t border-slate-200 dark:border-amber-400/20 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-slate-200 dark:border-slate-800">
+      <!-- Footer Grid: Single Division (Cols 1-3) + VIP Privé Club Container (Col 4) -->
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-stretch pb-12 border-b border-slate-200 dark:border-slate-800">
         
-        <!-- Col 1: Brand & Bio -->
-        <div class="lg:col-span-4 space-y-6">
-          <a href="index.html" class="flex items-center gap-3.5 group">
-            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-400 via-yellow-300 to-cyan-400 p-0.5 shadow-lg group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden">
-              <div class="w-full h-full bg-white dark:bg-[#050C18] rounded-[14px] overflow-hidden flex items-center justify-center">
-                <img src="assets/images/logo-square.jpg" alt="AquaSurge Jet Ski Crest" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-300">
+        <!-- Single Division for Brand, Quick Nav, Featured Supercraft -->
+        <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Col 1: Brand & Club Info (No unwanted space between content and social icons) -->
+          <div class="space-y-3.5">
+            <a href="index.html" class="flex items-center gap-3 group">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 via-yellow-300 to-cyan-400 p-0.5 shadow-md group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden flex-shrink-0">
+                <div class="w-full h-full bg-white dark:bg-[#050C18] rounded-[10px] overflow-hidden flex items-center justify-center">
+                  <img src="assets/images/logo-square.jpg" alt="AquaSurge Jet Ski Crest" class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-300">
+                </div>
               </div>
+              <div>
+                <span class="font-heading font-black text-xl text-slate-900 dark:text-white">AQUA<span class="text-amber-500 dark:text-amber-400">SURGE</span></span>
+                <span class="block text-[8px] uppercase font-crest tracking-widest text-amber-600 dark:text-amber-400 font-bold">Luxury Ocean Club</span>
+              </div>
+            </a>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed pr-2">
+              Laguna Bay's premier 5-star beach water sports and luxury ocean club. Combining 300hp supercharged performance with world-class marine safety since 2012.
+            </p>
+            <div class="flex items-center gap-2.5 pt-1">
+              <a href="https://instagram.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:border-amber-400 shadow-sm transition-all" aria-label="Instagram">
+                <i class="bi bi-instagram text-xs"></i>
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:border-amber-400 shadow-sm transition-all" aria-label="Facebook">
+                <i class="bi bi-facebook text-xs"></i>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:border-amber-400 shadow-sm transition-all" aria-label="YouTube">
+                <i class="bi bi-youtube text-xs"></i>
+              </a>
+              <a href="https://wa.me/18005557874" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-white dark:bg-[#07101F] border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-emerald-500 hover:border-emerald-400 shadow-sm transition-all" aria-label="WhatsApp Concierge">
+                <i class="bi bi-whatsapp text-xs"></i>
+              </a>
             </div>
-            <div>
-              <span class="font-heading font-black text-2xl text-slate-900 dark:text-white">AQUA<span class="text-amber-500 dark:text-amber-400">SURGE</span></span>
-              <span class="block text-[8px] uppercase font-crest tracking-widest text-amber-600 dark:text-amber-400 font-bold">Luxury Ocean Club</span>
-            </div>
-          </a>
-          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-            Laguna Bay's premier 5-star beach water sports and luxury ocean club. Combining 300hp supercharged performance with world-class marine safety since 2012.
-          </p>
-          <div class="flex items-center gap-3">
-            <a href="https://instagram.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:border-amber-400 shadow-sm transition-all" aria-label="Instagram">
-              <i class="bi bi-instagram"></i>
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:border-amber-400 shadow-sm transition-all" aria-label="Facebook">
-              <i class="bi bi-facebook"></i>
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:border-amber-400 shadow-sm transition-all" aria-label="YouTube">
-              <i class="bi bi-youtube"></i>
-            </a>
-            <a href="https://wa.me/18005557874" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-emerald-500 hover:border-emerald-400 shadow-sm transition-all" aria-label="WhatsApp Concierge">
-              <i class="bi bi-whatsapp"></i>
-            </a>
           </div>
+
+          <!-- Col 2: Navigation Links (Without VIP Reservation Portal) -->
+          <div class="space-y-3.5">
+            <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">Quick Navigation</h4>
+            <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <li><a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Home 1 (Grand Riviera)</a></li>
+              <li><a href="home-2.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Home 2 (Supercraft Ocean Club)</a></li>
+              <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Activities &amp; Fleet</a></li>
+              <li><a href="safety.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Safety Standards</a></li>
+              <li><a href="contact.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Contact</a></li>
+              <li><a href="about.html" class="text-amber-500 font-bold hover:text-amber-600 dark:hover:text-amber-300 transition-colors">About</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Popular Activities -->
+          <div class="space-y-3.5">
+            <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">Featured Supercraft</h4>
+            <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Sea-Doo RXT-X 300 Jet Ski</a></li>
+              <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">SkyHigh Royal Parasailing</a></li>
+              <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Seabob F5 SR Underwater</a></li>
+              <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Zapata Flyboard Pro Flight</a></li>
+              <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Sunset Catamaran Cruise</a></li>
+            </ul>
+          </div>
+
         </div>
 
-        <!-- Col 2: Navigation Links -->
-        <div class="lg:col-span-2 space-y-4">
-          <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">Quick Navigation</h4>
-          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
-            <li><a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Home</a></li>
-            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Activities & Fleet</a></li>
-            <li><a href="safety.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Safety Standards</a></li>
-            <li><a href="contact.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Contact</a></li>
-            <li><a href="about.html" class="text-amber-600 dark:text-amber-400 font-bold transition-colors">About</a></li>
-            <li><a href="booking.html" class="text-amber-500 font-bold hover:text-amber-400 transition-colors">VIP Reservation Portal</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Popular Activities -->
-        <div class="lg:col-span-3 space-y-4">
-          <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">Featured Supercraft</h4>
-          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
-            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Sea-Doo RXT-X 300 Jet Ski</a></li>
-            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">SkyHigh Royal Parasailing</a></li>
-            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Seabob F5 SR Underwater Diver</a></li>
-            <li><a href="activities.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Zapata Flyboard Pro Flight</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Newsletter -->
-        <div class="lg:col-span-3 space-y-4">
-          <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">VIP Privé Club</h4>
-          <p class="text-xs text-slate-600 dark:text-slate-400">Subscribe for early swell telemetry and complimentary 4K drone video clip vouchers.</p>
-          <form class="newsletter-form space-y-2">
-            <input type="email" placeholder="Your email address" required class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-amber-400 shadow-sm transition-colors">
-            <button type="submit" class="btn-primary w-full py-2.5 rounded-full text-xs font-bold shadow-md">
-              Join Privé Club
-            </button>
-          </form>
+        <!-- Col 4: VIP Privé Club Container (In Dedicated Luxury Card) -->
+        <div class="h-full">
+          <div class="bg-white dark:bg-[#07101F] rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-amber-400/20 shadow-md hover:shadow-lg transition-all space-y-3.5">
+            <div class="flex items-center justify-between gap-2">
+              <h4 class="text-xs uppercase font-crest font-bold tracking-widest text-amber-600 dark:text-amber-400">VIP Privé Club</h4>
+              <span class="w-6 h-6 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center text-xs flex-shrink-0"><i class="bi bi-gem"></i></span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Subscribe for private swell telemetry and free 4K drone video clip vouchers.</p>
+            <form class="newsletter-form space-y-2.5">
+              <div class="relative">
+                <input type="email" placeholder="Your email address" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-amber-400 shadow-sm transition-colors">
+              </div>
+              <button type="submit" class="btn-primary w-full py-2.5 rounded-full text-xs font-bold shadow-md hover:shadow-amber-500/20 transition-all flex items-center justify-center gap-1.5">
+                <span>Join Privé Club</span>
+                <i class="bi bi-arrow-right text-xs"></i>
+              </button>
+            </form>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 pt-1 flex items-center gap-1.5">
+              <i class="bi bi-shield-lock text-emerald-500"></i>
+              <span>100% confidential. Unsubscribe anytime.</span>
+            </div>
+          </div>
         </div>
 
       </div>
 
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-4">
+      <!-- Bottom Bar -->
+      <div class="pt-8 text-center text-xs text-slate-500 dark:text-slate-400">
         <p>© 2026 AquaSurge Luxury Ocean Club. All rights reserved.</p>
-        <div class="flex items-center gap-6">
-          <a href="booking.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Book VIP Activity</a>
-          <a href="safety.html" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors">Safety Standards</a>
-        </div>
       </div>
 
     </div>

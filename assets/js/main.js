@@ -10,6 +10,89 @@
   window.AquaSurge = window.AquaSurge || {};
 
   /* ------------------------------------------------------------------------
+   * 0. NAVIGATION & STATE PERSISTENCE ACROSS RELOADS
+   * Prevents unwanted redirection to Home when refreshing from another page/button
+   * ------------------------------------------------------------------------ */
+  const NAV_PAGE_KEY = 'aquasurge_active_page';
+  const NAV_URL_KEY = 'aquasurge_active_url';
+  const HOME_CLICKED_KEY = 'aquasurge_home_clicked';
+
+  (function initNavigationPersistence() {
+    try {
+      const pathParts = window.location.pathname.split('/');
+      const rawCurrent = pathParts[pathParts.length - 1] || 'index.html';
+      const currentPage = (rawCurrent === '' || rawCurrent === '/') ? 'index.html' : rawCurrent;
+      const currentUrl = currentPage + window.location.search + window.location.hash;
+
+      // Intercept all clicks (capturing phase) to distinguish user intent from reloads
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        // Check if user explicitly clicked Home or Logo
+        if (href === 'index.html' || href === './index.html' || href === '/' || href.endsWith('/index.html')) {
+          sessionStorage.setItem(HOME_CLICKED_KEY, 'true');
+          sessionStorage.setItem(NAV_PAGE_KEY, 'index.html');
+          sessionStorage.setItem(NAV_URL_KEY, 'index.html');
+        } else if (href.includes('.html')) {
+          // User clicked another page button
+          sessionStorage.removeItem(HOME_CLICKED_KEY);
+          const targetBase = href.split('#')[0].split('?')[0].split('/').pop();
+          if (targetBase) {
+            sessionStorage.setItem(NAV_PAGE_KEY, targetBase);
+            sessionStorage.setItem(NAV_URL_KEY, href);
+          }
+        }
+      }, true);
+
+      // Check navigation entry type
+      const navEntry = (typeof performance !== 'undefined' && performance.getEntriesByType)
+        ? performance.getEntriesByType('navigation')[0]
+        : null;
+      const navType = navEntry ? navEntry.type : '';
+
+      // If user clicked browser Back or Forward button, honor browser history navigation
+      if (navType === 'back_forward') {
+        sessionStorage.setItem(NAV_PAGE_KEY, currentPage);
+        sessionStorage.setItem(NAV_URL_KEY, currentUrl);
+        sessionStorage.removeItem(HOME_CLICKED_KEY);
+        return;
+      }
+
+      if (currentPage !== 'index.html') {
+        // User is currently viewing any other page/button (Activities, Safety, About, Contact, Booking)
+        sessionStorage.setItem(NAV_PAGE_KEY, currentPage);
+        sessionStorage.setItem(NAV_URL_KEY, currentUrl);
+        sessionStorage.removeItem(HOME_CLICKED_KEY);
+      } else {
+        // Currently on index.html: check if this was a reload/refresh while on another page
+        const homeClicked = sessionStorage.getItem(HOME_CLICKED_KEY) === 'true';
+        const lastPage = sessionStorage.getItem(NAV_PAGE_KEY);
+        const lastUrl = sessionStorage.getItem(NAV_URL_KEY);
+
+        if (homeClicked) {
+          // User deliberately clicked Home: clear flag and stay on Home
+          sessionStorage.removeItem(HOME_CLICKED_KEY);
+          sessionStorage.setItem(NAV_PAGE_KEY, 'index.html');
+          sessionStorage.setItem(NAV_URL_KEY, 'index.html');
+        } else if (lastPage && lastPage !== 'index.html') {
+          // Page was refreshed while on another button/page: seamlessly restore
+          const validPages = ['activities.html', 'about.html', 'safety.html', 'contact.html', 'booking.html', 'home-2.html'];
+          const basePage = lastPage.split('?')[0].split('#')[0];
+          if (validPages.includes(basePage)) {
+            const target = (lastUrl && lastUrl.includes(basePage)) ? lastUrl : lastPage;
+            window.location.replace(target);
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Navigation persistence warning:', e);
+    }
+  })();
+
+  /* ------------------------------------------------------------------------
    * 1. THEME & RTL STATE MANAGEMENT
    * ------------------------------------------------------------------------ */
   const THEME_STORAGE_KEY = 'aquasurge_theme';
@@ -70,11 +153,26 @@
     if (isRTL) {
       document.documentElement.setAttribute('dir', 'rtl');
       document.documentElement.classList.add('rtl');
+      document.documentElement.classList.remove('ltr');
     } else {
       document.documentElement.setAttribute('dir', 'ltr');
       document.documentElement.classList.remove('rtl');
+      document.documentElement.classList.add('ltr');
     }
     localStorage.setItem(RTL_STORAGE_KEY, isRTL ? 'true' : 'false');
+
+    // Update RTL arrow icons & tooltips
+    const rtlIcons = document.querySelectorAll('.rtl-toggle-icon');
+    rtlIcons.forEach(icon => {
+      icon.className = isRTL 
+        ? 'bi bi-arrow-left-right rtl-toggle-icon text-base text-amber-500' 
+        : 'bi bi-arrow-left-right rtl-toggle-icon text-base';
+    });
+    const rtlBtns = document.querySelectorAll('.rtl-toggle-btn');
+    rtlBtns.forEach(btn => {
+      btn.title = isRTL ? 'Switch to LTR Layout (Left-to-Right)' : 'Switch to RTL Layout (Right-to-Left)';
+      btn.setAttribute('aria-label', btn.title);
+    });
 
     // Update badge text if present
     const labels = document.querySelectorAll('.rtl-status-label');
@@ -309,7 +407,7 @@
         </div>
         <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
           <span class="text-sm font-semibold">${favActs.length} Saved Activities</span>
-          <a href="booking.html" class="btn-primary text-xs px-4 py-2.5">Proceed to Booking Form</a>
+          <a href="booking.html#booking-form-section" class="btn-primary text-xs px-4 py-2.5">Proceed to Booking Form</a>
         </div>
       `;
     }
@@ -334,6 +432,9 @@
   AquaSurge.closeModal = function (modalId) {
     const modal = document.getElementById(modalId);
     if (!modal) return;
+    // Pause any playing videos inside modal
+    const vids = modal.querySelectorAll('video');
+    vids.forEach(v => { try { v.pause(); } catch(e){} });
     modal.classList.remove('active');
     if (!document.querySelector('.modal-overlay.active')) {
       document.body.style.overflow = '';
@@ -475,12 +576,18 @@
     if ((window.location.pathname.includes('booking.html') || window.location.pathname.includes('contact.html')) && typeof window.updateBookingFormSelection === 'function' && document.getElementById('booking-form')) {
       window.updateBookingFormSelection(activityId);
       AquaSurge.closeAllModals();
-      const formEl = document.getElementById('booking-form');
-      if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+      const card = document.getElementById('booking-portal-card') || document.getElementById('booking-form-section');
+      if (card) {
+        const header = document.querySelector('.main-header');
+        const headerHeight = header ? header.offsetHeight : 64;
+        const yOffset = -headerHeight - 24;
+        const y = card.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      }
       AquaSurge.showToast('Activity selected in booking form', 'info');
     } else {
-      // Redirect directly to booking page with param
-      window.location.href = `booking.html?activity=${encodeURIComponent(activityId)}`;
+      // Redirect directly to booking page with param and anchor to reservation portal
+      window.location.href = `booking.html?activity=${encodeURIComponent(activityId)}#booking-form-section`;
     }
   };
 
@@ -488,36 +595,40 @@
    * 7. ANIMATED STAT COUNTERS
    * ------------------------------------------------------------------------ */
   function initCounters() {
-    const counters = document.querySelectorAll('.stat-counter');
+    const counters = document.querySelectorAll('.stat-counter, .counter-val');
     if (!counters.length) return;
 
-    let animated = false;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-          animated = true;
-          counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
-            const suffix = counter.getAttribute('data-suffix') || '';
-            const duration = 1800;
-            const stepTime = 20;
-            const steps = duration / stepTime;
-            const increment = target / steps;
-            let current = 0;
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          if (counter._hasAnimated) return;
+          counter._hasAnimated = true;
 
-            const timer = setInterval(() => {
-              current += increment;
-              if (current >= target) {
-                counter.textContent = target.toLocaleString() + suffix;
-                clearInterval(timer);
-              } else {
-                counter.textContent = Math.floor(current).toLocaleString() + suffix;
-              }
-            }, stepTime);
-          });
+          const target = parseFloat(counter.getAttribute('data-target')) || 0;
+          const suffix = counter.getAttribute('data-suffix') || '';
+          const decimals = parseInt(counter.getAttribute('data-decimals'), 10) || 0;
+          const duration = 1500;
+          const stepTime = 25;
+          const steps = duration / stepTime;
+          const increment = target / steps;
+          let current = 0;
+
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              const formatted = decimals > 0 ? target.toFixed(decimals) : Math.round(target).toLocaleString();
+              counter.textContent = formatted + suffix;
+              clearInterval(timer);
+            } else {
+              const formatted = decimals > 0 ? current.toFixed(decimals) : Math.floor(current).toLocaleString();
+              counter.textContent = formatted + suffix;
+            }
+          }, stepTime);
+          observer.unobserve(counter);
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1 });
 
     counters.forEach(c => observer.observe(c));
   }
@@ -559,9 +670,9 @@
   }
 
   /* ------------------------------------------------------------------------
-   * 9. LIGHTBOX COMPONENT
+   * 9. LIGHTBOX COMPONENT (IMAGES & VIDEO CLIPS)
    * ------------------------------------------------------------------------ */
-  AquaSurge.openLightbox = function (imageUrl, caption = '') {
+  AquaSurge.openLightbox = function (mediaUrl, caption = '') {
     let lb = document.getElementById('lightbox-modal');
     if (!lb) {
       lb = document.createElement('div');
@@ -569,19 +680,46 @@
       lb.className = 'modal-overlay';
       lb.innerHTML = `
         <div class="relative max-w-4xl w-full p-4 flex flex-col items-center">
-          <button type="button" class="absolute -top-10 right-4 text-white text-2xl hover:text-rose-400" data-modal-close="lightbox-modal">
+          <button type="button" class="absolute -top-10 right-4 text-white text-2xl hover:text-amber-400 transition-colors" data-modal-close="lightbox-modal">
             <i class="bi bi-x-lg"></i>
           </button>
-          <img id="lightbox-img" src="" alt="Gallery Image" class="max-h-[80vh] w-auto rounded-2xl shadow-2xl object-contain">
-          <p id="lightbox-caption" class="text-white text-sm mt-3 text-center"></p>
+          <div id="lightbox-media-container" class="w-full flex items-center justify-center">
+            <img id="lightbox-img" src="" alt="Gallery Image" class="max-h-[80vh] w-auto rounded-2xl shadow-2xl object-contain hidden">
+            <video id="lightbox-video" src="" controls autoplay playsinline class="max-h-[80vh] w-auto rounded-2xl shadow-2xl object-contain hidden"></video>
+          </div>
+          <p id="lightbox-caption" class="text-white text-sm mt-3 text-center font-medium"></p>
         </div>
       `;
       document.body.appendChild(lb);
     }
 
     const img = lb.querySelector('#lightbox-img');
+    const vid = lb.querySelector('#lightbox-video');
     const cap = lb.querySelector('#lightbox-caption');
-    img.src = imageUrl;
+    const isVideo = /\.(webm|mp4|mov|m4v|ogv)($|\?)/i.test(mediaUrl);
+
+    if (isVideo) {
+      if (img) {
+        img.src = '';
+        img.classList.add('hidden');
+      }
+      if (vid) {
+        vid.src = mediaUrl;
+        vid.classList.remove('hidden');
+        vid.currentTime = 0;
+        vid.play().catch(() => {});
+      }
+    } else {
+      if (vid) {
+        vid.pause();
+        vid.src = '';
+        vid.classList.add('hidden');
+      }
+      if (img) {
+        img.src = mediaUrl;
+        img.classList.remove('hidden');
+      }
+    }
     cap.textContent = caption;
 
     AquaSurge.openModal('lightbox-modal');
@@ -736,6 +874,182 @@ Downloaded from AquaSurge Luxury Ocean Club Official Portal.
   }
 
   /* ------------------------------------------------------------------------
+   * 14. STORY & MARINA SHOWCASE SLIDER
+   * ------------------------------------------------------------------------ */
+  function initStorySlider() {
+    const slider = document.getElementById('story-marina-slider');
+    if (!slider) return;
+
+    const slides = slider.querySelectorAll('.story-slide');
+    const dots = slider.querySelectorAll('.story-dot');
+    const prevBtn = slider.querySelector('.story-prev-btn');
+    const nextBtn = slider.querySelector('.story-next-btn');
+    const counter = slider.querySelector('.story-counter');
+
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let autoPlayTimer = null;
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentIndex = index;
+
+      slides.forEach((slide, i) => {
+        if (i === currentIndex) {
+          slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+          slide.classList.add('opacity-100', 'z-10');
+          const img = slide.querySelector('img');
+          if (img) img.classList.add('scale-105');
+        } else {
+          slide.classList.remove('opacity-100', 'z-10');
+          slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+          const img = slide.querySelector('img');
+          if (img) img.classList.remove('scale-105');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === currentIndex) {
+          dot.classList.remove('bg-white/40', 'w-2');
+          dot.classList.add('bg-amber-400', 'w-6');
+          dot.setAttribute('aria-current', 'true');
+        } else {
+          dot.classList.remove('bg-amber-400', 'w-6');
+          dot.classList.add('bg-white/40', 'w-2');
+          dot.removeAttribute('aria-current');
+        }
+      });
+
+      if (counter) {
+        counter.textContent = `${currentIndex + 1} / ${totalSlides}`;
+      }
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        prevSlide();
+        startAutoPlay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        nextSlide();
+        startAutoPlay();
+      });
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSlide(i);
+        startAutoPlay();
+      });
+    });
+
+    slider.addEventListener('mouseenter', stopAutoPlay);
+    slider.addEventListener('mouseleave', startAutoPlay);
+    slider.addEventListener('touchstart', stopAutoPlay, { passive: true });
+    slider.addEventListener('touchend', startAutoPlay, { passive: true });
+
+    // Keyboard navigation when hovering/focused on slider
+    slider.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevSlide();
+        startAutoPlay();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
+        startAutoPlay();
+      }
+    });
+
+    // Initialize first slide
+    showSlide(0);
+    startAutoPlay();
+  }
+
+  /* ------------------------------------------------------------------------
+   * 15. STRICT INPUT CONSTRAINTS (LETTERS ONLY FOR NAMES, NUMBERS ONLY FOR NUMBERS/PHONES)
+   * ------------------------------------------------------------------------ */
+  function initStrictInputConstraints() {
+    // Letters Only Enforcer (Names)
+    const applyLettersOnly = (input) => {
+      input.setAttribute('pattern', '[A-Za-z\\s]+');
+      input.setAttribute('title', 'Please enter letters only');
+      input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^a-zA-Z\s]/g, '');
+      });
+      input.addEventListener('keypress', (e) => {
+        if (e.key && e.key.length === 1 && !/^[a-zA-Z\s]$/.test(e.key)) {
+          e.preventDefault();
+        }
+      });
+      input.addEventListener('paste', (e) => {
+        const text = (e.clipboardData || window.clipboardData)?.getData('text');
+        if (text && /[^a-zA-Z\s]/.test(text)) {
+          e.preventDefault();
+          const clean = text.replace(/[^a-zA-Z\s]/g, '');
+          document.execCommand('insertText', false, clean);
+        }
+      });
+    };
+
+    // Numbers Only Enforcer (Phones, WhatsApp, Counts)
+    const applyNumbersOnly = (input) => {
+      input.setAttribute('inputmode', 'numeric');
+      input.setAttribute('pattern', '[0-9]+');
+      input.setAttribute('title', 'Please enter numbers only');
+      input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^0-9]/g, '');
+      });
+      input.addEventListener('keypress', (e) => {
+        if (e.key && e.key.length === 1 && !/^[0-9]$/.test(e.key)) {
+          e.preventDefault();
+        }
+      });
+      input.addEventListener('paste', (e) => {
+        const text = (e.clipboardData || window.clipboardData)?.getData('text');
+        if (text && /[^0-9]/.test(text)) {
+          e.preventDefault();
+          const clean = text.replace(/[^0-9]/g, '');
+          document.execCommand('insertText', false, clean);
+        }
+      });
+    };
+
+    // Apply to all Name inputs across the site
+    document.querySelectorAll('input#booking-name, input[name="name"], input[data-type="letters-only"]').forEach(applyLettersOnly);
+
+    // Apply to all Phone / Number inputs across the site
+    document.querySelectorAll('input#booking-phone, input[name="phone"], input[type="tel"], input[data-type="numbers-only"]').forEach(applyNumbersOnly);
+  }
+
+  /* ------------------------------------------------------------------------
    * DOM READY INIT
    * ------------------------------------------------------------------------ */
   document.addEventListener('DOMContentLoaded', () => {
@@ -747,6 +1061,8 @@ Downloaded from AquaSurge Luxury Ocean Club Official Portal.
     initAccordions();
     initNewsletter();
     initBackToTop();
+    initStorySlider();
+    initStrictInputConstraints();
     AquaSurge.updateWishlistBadges();
     AquaSurge.syncWishlistButtons();
   });
