@@ -803,16 +803,16 @@ img {
   inset: 0;
   background: 
     linear-gradient(90deg, 
-      rgba(2, 6, 23, 0.50) 0%, 
-      rgba(2, 6, 23, 0.25) 42%, 
-      rgba(2, 6, 23, 0.04) 68%, 
-      transparent 100%
+      rgba(2, 6, 23, 0.82) 0%, 
+      rgba(2, 6, 23, 0.68) 40%, 
+      rgba(2, 6, 23, 0.35) 70%, 
+      rgba(2, 6, 23, 0.15) 100%
     ),
     linear-gradient(180deg, 
-      rgba(2, 6, 23, 0.28) 0%, 
-      transparent 22%, 
-      transparent 78%, 
-      rgba(2, 6, 23, 0.36) 100%
+      rgba(2, 6, 23, 0.55) 0%, 
+      transparent 30%, 
+      rgba(2, 6, 23, 0.40) 70%, 
+      rgba(2, 6, 23, 0.85) 100%
     );
   z-index: 2;
   pointer-events: none;
@@ -821,16 +821,16 @@ img {
 [dir="rtl"] .hero-bg-overlay {
   background: 
     linear-gradient(270deg, 
-      rgba(2, 6, 23, 0.50) 0%, 
-      rgba(2, 6, 23, 0.25) 42%, 
-      rgba(2, 6, 23, 0.04) 68%, 
-      transparent 100%
+      rgba(2, 6, 23, 0.82) 0%, 
+      rgba(2, 6, 23, 0.68) 40%, 
+      rgba(2, 6, 23, 0.35) 70%, 
+      rgba(2, 6, 23, 0.15) 100%
     ),
     linear-gradient(180deg, 
-      rgba(2, 6, 23, 0.28) 0%, 
-      transparent 22%, 
-      transparent 78%, 
-      rgba(2, 6, 23, 0.36) 100%
+      rgba(2, 6, 23, 0.55) 0%, 
+      transparent 30%, 
+      rgba(2, 6, 23, 0.40) 70%, 
+      rgba(2, 6, 23, 0.85) 100%
     );
 }
 
@@ -892,10 +892,11 @@ img {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, 
-    rgba(3, 7, 18, 0.32) 0%, 
-    rgba(7, 18, 36, 0.16) 45%, 
-    rgba(3, 7, 18, 0.48) 100%
-  );
+    rgba(3, 7, 18, 0.65) 0%, 
+    rgba(4, 9, 20, 0.52) 42%, 
+    rgba(3, 7, 18, 0.76) 80%,
+    rgba(3, 7, 18, 0.92) 100%
+  ), radial-gradient(ellipse at center, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.60) 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -904,12 +905,21 @@ img {
 .hero-wrapper h1 span,
 .page-header-banner h1,
 .page-header-banner h1 span {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 4px 18px rgba(0, 0, 0, 0.95), 0 8px 36px rgba(0, 0, 0, 0.85);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 4px 18px rgba(0, 0, 0, 0.95), 0 8px 36px rgba(0, 0, 0, 0.9);
 }
 
 .hero-wrapper p,
 .page-header-banner p {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 4px 16px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.98), 0 4px 16px rgba(0, 0, 0, 0.95);
+  color: #FFFFFF !important;
+}
+
+.hero-frosted-badge {
+  background: rgba(3, 7, 18, 0.82) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* Ensure PADI Scuba Diver Faces are prominently displayed across all cards, modals & previews */
