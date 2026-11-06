@@ -443,7 +443,7 @@
         </div>
 
         <!-- Reference Code Display -->
-        <div class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500/10 via-yellow-400/5 to-cyan-500/10 border border-amber-400/30 flex items-center justify-between gap-3">
+        <div class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500/10 via-yellow-400/5 to-amber-500/10 border border-amber-400/30 flex items-center justify-between gap-3">
           <div>
             <span class="text-[9px] uppercase tracking-wider text-slate-500 dark:text-slate-400 block font-mono">OFFICIAL VIP REFERENCE PASS</span>
             <strong class="text-lg sm:text-xl font-mono text-amber-500 dark:text-amber-400 tracking-wider font-black">${booking.refId}</strong>

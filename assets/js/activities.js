@@ -208,7 +208,7 @@
             <!-- Bottom Floating specs on image -->
             <div class="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-white text-[11px] z-10">
               <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10">
-                <i class="bi bi-clock-fill text-cyan-400 text-[10px]"></i> ${item.duration}
+                <i class="bi bi-clock-fill text-amber-400 text-[10px]"></i> ${item.duration}
               </span>
               <span class="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 text-amber-300 font-bold">
                 <i class="bi bi-lightning-charge-fill text-amber-400 text-[10px]"></i> ${item.thrillLevel}/5
@@ -335,7 +335,7 @@
 
         <div class="pt-3 border-t border-slate-100 dark:border-slate-800 mt-auto">
           <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-3">
-            <span><i class="bi bi-clock-fill text-cyan-400"></i> ${combo.duration}</span>
+            <span><i class="bi bi-clock-fill text-amber-400"></i> ${combo.duration}</span>
             <span class="truncate max-w-[120px] text-right" title="${combo.target}"><i class="bi bi-people-fill text-amber-400"></i> ${combo.target}</span>
           </div>
 

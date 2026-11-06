@@ -505,7 +505,7 @@
         <!-- Quick Specs Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-slate-200 dark:border-slate-800 text-center">
           <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800">
-            <i class="bi bi-clock-fill text-cyan-400 text-lg"></i>
+            <i class="bi bi-clock-fill text-amber-400 text-lg"></i>
             <span class="text-xs text-slate-400 block mt-1">Duration</span>
             <strong class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">${act.duration}</strong>
           </div>
@@ -537,7 +537,7 @@
             </ul>
           </div>
           <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
-            <h5 class="text-xs uppercase tracking-wider font-extrabold text-cyan-400 mb-2.5 flex items-center gap-1.5">
+            <h5 class="text-xs uppercase tracking-wider font-extrabold text-amber-500 mb-2.5 flex items-center gap-1.5">
               <i class="bi bi-shield-check"></i> 5-Star VIP Inclusions
             </h5>
             <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
@@ -546,7 +546,7 @@
           </div>
         </div>
 
-        <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-yellow-400/5 to-cyan-500/10 border border-amber-400/30 text-xs text-slate-700 dark:text-slate-300 flex items-start gap-3">
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-yellow-400/5 to-amber-500/10 border border-amber-400/30 text-xs text-slate-700 dark:text-slate-300 flex items-start gap-3">
           <i class="bi bi-info-circle-fill text-amber-500 text-base flex-shrink-0 mt-0.5"></i>
           <div>
             <strong class="text-amber-500">Concierge Requirements & Safety Note:</strong> ${act.requirements}
