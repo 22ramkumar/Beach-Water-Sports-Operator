@@ -85,7 +85,9 @@
 }
 
 /* Dark Mode (Midnight Monaco Yacht Club & Obsidian Blue) */
-[data-theme="dark"] {
+[data-theme="dark"],
+.dark,
+html.dark {
   --bg-page: #030712;
   --bg-surface: #07101F;
   --bg-surface-elevated: #0C1A32;
@@ -662,19 +664,46 @@ img {
 
 /* Light Mode Secondary Button */
 [data-theme="light"] .btn-secondary,
-.card-theme .btn-secondary,
-#pricing-section .btn-secondary {
+[data-theme="light"] .card-theme .btn-secondary,
+[data-theme="light"] #pricing-section .btn-secondary,
+html:not(.dark) .card-theme .btn-secondary,
+html:not(.dark) #pricing-section .btn-secondary {
   background: #FFFFFF;
   color: #334155 !important;
   border: 1.5px solid #CBD5E1;
 }
 
 [data-theme="light"] .btn-secondary:hover,
-.card-theme .btn-secondary:hover,
-#pricing-section .btn-secondary:hover {
+[data-theme="light"] .card-theme .btn-secondary:hover,
+[data-theme="light"] #pricing-section .btn-secondary:hover,
+html:not(.dark) .card-theme .btn-secondary:hover,
+html:not(.dark) #pricing-section .btn-secondary:hover {
   background: #F1F5F9;
   border-color: var(--color-primary);
   color: var(--color-primary) !important;
+}
+
+/* Dark Mode Secondary Button (Guarantees crisp white text & borders on dark cards) */
+[data-theme="dark"] .btn-secondary,
+[data-theme="dark"] .card-theme .btn-secondary,
+[data-theme="dark"] #pricing-section .btn-secondary,
+.dark .btn-secondary,
+.dark .card-theme .btn-secondary,
+.dark #pricing-section .btn-secondary {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme="dark"] .btn-secondary:hover,
+[data-theme="dark"] .card-theme .btn-secondary:hover,
+[data-theme="dark"] #pricing-section .btn-secondary:hover,
+.dark .btn-secondary:hover,
+.dark .card-theme .btn-secondary:hover,
+.dark #pricing-section .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
 }
 
 /* Ocean Outline Button */
