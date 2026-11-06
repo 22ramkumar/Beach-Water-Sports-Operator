@@ -529,6 +529,28 @@ img {
   background-color: #050C18;
 }
 
+/* Mobile Header Uncongested & Elegant Spacing */
+@media (max-width: 639px) {
+  .main-header {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  .icon-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.88rem;
+  }
+  .mobile-menu-toggle.icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .main-header .brand-text-subtitle {
+    white-space: nowrap !important;
+    font-size: 7.5px !important;
+    letter-spacing: 0.11em !important;
+  }
+}
+
 /* Mobile Drawer */
 .mobile-drawer {
   position: fixed;
@@ -1136,7 +1158,8 @@ img[src*="padi-scuba-dive"],
 /* --------------------------------------------------------------------------
    12. ACCORDION & FAQ
    -------------------------------------------------------------------------- */
-.faq-accordion-item {
+.faq-accordion-item,
+.accordion-item {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   margin-bottom: 0.85rem;
@@ -1145,12 +1168,14 @@ img[src*="padi-scuba-dive"],
   transition: all var(--transition-fast);
 }
 
-.faq-accordion-item:hover, .faq-accordion-item.open {
+.faq-accordion-item:hover, .faq-accordion-item.open,
+.accordion-item:hover, .accordion-item.open {
   border-color: var(--gold-primary);
   box-shadow: 0 6px 20px rgba(212, 175, 55, 0.08);
 }
 
-.faq-header {
+.faq-header,
+.accordion-header {
   padding: 1.35rem 1.6rem;
   display: flex;
   align-items: center;
@@ -1162,7 +1187,8 @@ img[src*="padi-scuba-dive"],
   gap: 1rem;
 }
 
-.faq-icon {
+.faq-icon,
+.accordion-icon {
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -1175,14 +1201,17 @@ img[src*="padi-scuba-dive"],
   border: 1px solid var(--border-color);
 }
 
-.faq-accordion-item.open .faq-icon {
+.faq-accordion-item.open .faq-icon,
+.accordion-item.open .faq-icon,
+.accordion-item.open .accordion-icon {
   transform: rotate(180deg);
   background: var(--gold-gradient);
   color: #030712;
   border-color: transparent;
 }
 
-.faq-content {
+.faq-content,
+.accordion-content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1190,7 +1219,8 @@ img[src*="padi-scuba-dive"],
   color: var(--text-muted);
 }
 
-.faq-accordion-item.open .faq-content {
+.faq-accordion-item.open .faq-content,
+.accordion-item.open .accordion-content {
   padding-bottom: 1.35rem;
 }
 

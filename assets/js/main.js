@@ -634,26 +634,27 @@
   }
 
   /* ------------------------------------------------------------------------
-   * 8. FAQ ACCORDION HANDLERS
+   * 8. FAQ ACCORDION HANDLERS (SHOW ANSWERS ONLY WHEN CLICKED)
    * ------------------------------------------------------------------------ */
   function initAccordions() {
     document.addEventListener('click', (e) => {
-      const header = e.target.closest('.faq-header');
+      // Allow clicking the header row or the arrow button specifically
+      const header = e.target.closest('.faq-header, .accordion-header');
       if (!header) return;
 
-      const item = header.closest('.faq-accordion-item');
+      const item = header.closest('.faq-accordion-item, .accordion-item');
       if (!item) return;
 
-      const content = item.querySelector('.faq-content');
+      const content = item.querySelector('.faq-content, .accordion-content');
       const isOpen = item.classList.contains('open');
 
       // Close siblings if in accordion container
-      const container = item.closest('.faq-container');
+      const container = item.closest('.faq-container, .space-y-4, .space-y-3') || item.parentElement;
       if (container) {
-        container.querySelectorAll('.faq-accordion-item.open').forEach(sibling => {
+        container.querySelectorAll('.faq-accordion-item.open, .accordion-item.open').forEach(sibling => {
           if (sibling !== item) {
             sibling.classList.remove('open');
-            const sibContent = sibling.querySelector('.faq-content');
+            const sibContent = sibling.querySelector('.faq-content, .accordion-content');
             if (sibContent) sibContent.style.maxHeight = null;
           }
         });
