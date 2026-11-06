@@ -139,7 +139,7 @@
     // Update badge text if present
     const labels = document.querySelectorAll('.rtl-status-label');
     labels.forEach(label => {
-      label.textContent = isRTL ? 'LTR' : 'RTL';
+      label.textContent = isRTL ? 'LTR Layout' : 'RTL Layout';
     });
   }
 
