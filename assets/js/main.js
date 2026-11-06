@@ -10,85 +10,47 @@
   window.AquaSurge = window.AquaSurge || {};
 
   /* ------------------------------------------------------------------------
-   * 0. NAVIGATION & STATE PERSISTENCE ACROSS RELOADS
-   * Prevents unwanted redirection to Home when refreshing from another page/button
+   * 0. RELOAD REDIRECTION TO HOME
+   * When refreshed from any secondary page, automatically redirect to index.html
    * ------------------------------------------------------------------------ */
-  const NAV_PAGE_KEY = 'aquasurge_active_page';
-  const NAV_URL_KEY = 'aquasurge_active_url';
-  const HOME_CLICKED_KEY = 'aquasurge_home_clicked';
-
-  (function initNavigationPersistence() {
+  (function initReloadRedirect() {
     try {
       const pathParts = window.location.pathname.split('/');
       const rawCurrent = pathParts[pathParts.length - 1] || 'index.html';
       const currentPage = (rawCurrent === '' || rawCurrent === '/') ? 'index.html' : rawCurrent;
-      const currentUrl = currentPage + window.location.search + window.location.hash;
 
-      // Intercept all clicks (capturing phase) to distinguish user intent from reloads
-      document.addEventListener('click', (e) => {
-        const link = e.target.closest('a');
-        if (!link) return;
-        const href = link.getAttribute('href');
-        if (!href) return;
+      // Only check and redirect if on a secondary page (not index.html)
+      if (currentPage !== 'index.html') {
+        let isReload = false;
 
-        // Check if user explicitly clicked Home or Logo
-        if (href === 'index.html' || href === './index.html' || href === '/' || href.endsWith('/index.html')) {
-          sessionStorage.setItem(HOME_CLICKED_KEY, 'true');
-          sessionStorage.setItem(NAV_PAGE_KEY, 'index.html');
-          sessionStorage.setItem(NAV_URL_KEY, 'index.html');
-        } else if (href.includes('.html')) {
-          // User clicked another page button
-          sessionStorage.removeItem(HOME_CLICKED_KEY);
-          const targetBase = href.split('#')[0].split('?')[0].split('/').pop();
-          if (targetBase) {
-            sessionStorage.setItem(NAV_PAGE_KEY, targetBase);
-            sessionStorage.setItem(NAV_URL_KEY, href);
+        // Modern Navigation Timing API
+        if (typeof performance !== 'undefined' && performance.getEntriesByType) {
+          const navEntries = performance.getEntriesByType('navigation');
+          if (navEntries && navEntries.length > 0 && navEntries[0].type === 'reload') {
+            isReload = true;
           }
         }
-      }, true);
 
-      // Check navigation entry type
-      const navEntry = (typeof performance !== 'undefined' && performance.getEntriesByType)
-        ? performance.getEntriesByType('navigation')[0]
-        : null;
-      const navType = navEntry ? navEntry.type : '';
-
-      // If user clicked browser Back or Forward button, honor browser history navigation
-      if (navType === 'back_forward') {
-        sessionStorage.setItem(NAV_PAGE_KEY, currentPage);
-        sessionStorage.setItem(NAV_URL_KEY, currentUrl);
-        sessionStorage.removeItem(HOME_CLICKED_KEY);
-        return;
-      }
-
-      if (currentPage !== 'index.html') {
-        // User is currently viewing any other page/button (Activities, Safety, About, Contact, Booking)
-        sessionStorage.setItem(NAV_PAGE_KEY, currentPage);
-        sessionStorage.setItem(NAV_URL_KEY, currentUrl);
-        sessionStorage.removeItem(HOME_CLICKED_KEY);
-      } else {
-        // Currently on index.html: check if this was a reload/refresh while on another page
-        const homeClicked = sessionStorage.getItem(HOME_CLICKED_KEY) === 'true';
-        const lastPage = sessionStorage.getItem(NAV_PAGE_KEY);
-        const lastUrl = sessionStorage.getItem(NAV_URL_KEY);
-
-        if (homeClicked) {
-          // User deliberately clicked Home: clear flag and stay on Home
-          sessionStorage.removeItem(HOME_CLICKED_KEY);
-          sessionStorage.setItem(NAV_PAGE_KEY, 'index.html');
-          sessionStorage.setItem(NAV_URL_KEY, 'index.html');
-        } else if (lastPage && lastPage !== 'index.html') {
-          // Page was refreshed while on another button/page: seamlessly restore
-          const validPages = ['activities.html', 'about.html', 'safety.html', 'contact.html', 'booking.html', 'home-2.html'];
-          const basePage = lastPage.split('?')[0].split('#')[0];
-          if (validPages.includes(basePage)) {
-            const target = (lastUrl && lastUrl.includes(basePage)) ? lastUrl : lastPage;
-            window.location.replace(target);
+        // Legacy Navigation Timing API fallback
+        if (!isReload && typeof performance !== 'undefined' && performance.navigation) {
+          if (performance.navigation.type === 1) { // 1 === TYPE_RELOAD
+            isReload = true;
           }
+        }
+
+        if (isReload) {
+          try {
+            sessionStorage.removeItem('aquasurge_active_page');
+            sessionStorage.removeItem('aquasurge_active_url');
+            sessionStorage.removeItem('aquasurge_home_clicked');
+          } catch (e) {}
+
+          window.location.replace('index.html');
+          return;
         }
       }
     } catch (e) {
-      console.warn('Navigation persistence warning:', e);
+      console.warn('Reload redirect warning:', e);
     }
   })();
 

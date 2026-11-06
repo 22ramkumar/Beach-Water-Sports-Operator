@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <script>
     (function () {
-      // 1. Theme restoration
+      // Theme restoration
       try {
         const savedTheme = localStorage.getItem('aquasurge_theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -13,27 +13,6 @@
           document.documentElement.classList.add('dark');
         } else {
           document.documentElement.classList.remove('dark');
-        }
-      } catch (e) {}
-
-      // 2. Navigation persistence: preserve active page & tabs across browser refreshes and editor reloads
-      try {
-        const navEntry = (typeof performance !== 'undefined' && performance.getEntriesByType)
-          ? performance.getEntriesByType('navigation')[0]
-          : null;
-        const navType = navEntry ? navEntry.type : '';
-        const homeClicked = sessionStorage.getItem('aquasurge_home_clicked') === 'true';
-        const lastPage = sessionStorage.getItem('aquasurge_active_page');
-        const lastUrl = sessionStorage.getItem('aquasurge_active_url');
-
-        // Only restore if user was on another page and didn't explicitly navigate to Home or click Back
-        if (navType !== 'back_forward' && !homeClicked && lastPage && lastPage !== 'index.html') {
-          const validPages = ['activities.html', 'about.html', 'safety.html', 'contact.html', 'booking.html', 'home-2.html'];
-          const basePage = lastPage.split('?')[0].split('#')[0];
-          if (validPages.includes(basePage)) {
-            const target = (lastUrl && lastUrl.includes(basePage)) ? lastUrl : lastPage;
-            window.location.replace(target);
-          }
         }
       } catch (e) {}
     })();

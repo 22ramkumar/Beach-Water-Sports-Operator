@@ -4,6 +4,22 @@
   <meta charset="UTF-8">
   <script>
     (function () {
+      // Redirect to home if refreshed from secondary page
+      try {
+        var isReload = false;
+        if (window.performance && window.performance.getEntriesByType) {
+          var nav = window.performance.getEntriesByType('navigation');
+          if (nav && nav.length > 0 && nav[0].type === 'reload') isReload = true;
+        }
+        if (!isReload && window.performance && window.performance.navigation) {
+          if (window.performance.navigation.type === 1) isReload = true;
+        }
+        if (isReload) {
+          window.location.replace('index.html');
+          return;
+        }
+      } catch (e) {}
+
       const savedTheme = localStorage.getItem('aquasurge_theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
       if (savedTheme === 'dark') {
