@@ -990,14 +990,9 @@
        ========================================================================= -->
   
   <!-- Activity Detail Modal -->
-  <div id="activity-detail-modal" class="modal-backdrop fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="bg-white dark:bg-[#07101F] rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[90vh] overflow-y-auto">
-      <button type="button" class="modal-close-btn absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-slate-200" onclick="AquaSurge.closeAllModals()" aria-label="Close Modal">
-        <i class="bi bi-x-lg text-sm"></i>
-      </button>
-      <div id="modal-activity-content">
-        <!-- Rendered dynamically by main.js viewActivityDetails() -->
-      </div>
+  <div id="activity-detail-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div id="activity-detail-content"></div>
     </div>
   </div>
 

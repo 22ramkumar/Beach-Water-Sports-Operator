@@ -431,97 +431,99 @@
     if (!act) return;
 
     const modal = document.getElementById('activity-detail-modal');
-    const content = document.getElementById('activity-detail-content');
+    const content = document.getElementById('activity-detail-content') || document.getElementById('modal-activity-content');
     if (!modal || !content) return;
 
     content.innerHTML = `
       <div class="relative overflow-hidden">
-        <img src="${act.image}" alt="${act.name}" class="w-full h-72 sm:h-96 object-cover rounded-t-3xl" style="${act.objectPosition ? `object-position: ${act.objectPosition} !important;` : ''}">
+        <img src="${act.image}" alt="${act.name}" class="w-full h-48 sm:h-52 md:h-56 object-cover rounded-t-3xl" style="${act.objectPosition ? `object-position: ${act.objectPosition} !important;` : ''}">
         <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-        <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+        <div class="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 flex flex-wrap gap-2">
           <span class="badge-gold">${act.categoryLabel}</span>
           ${act.badge ? `<span class="badge-vip"><i class="bi bi-gem"></i> ${act.badge}</span>` : ''}
         </div>
-        <button type="button" data-modal-close="activity-detail-modal" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black hover:text-amber-400 transition-all">
-          <i class="bi bi-x-lg text-sm"></i>
+        <button type="button" data-modal-close="activity-detail-modal" class="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:bg-black hover:text-amber-400 transition-all shadow-lg" aria-label="Close Modal">
+          <i class="bi bi-x-lg text-xs"></i>
         </button>
       </div>
 
-      <div class="p-6 sm:p-8 space-y-6 bg-white dark:bg-[#07101F]">
+      <div class="p-5 sm:p-6 space-y-4 sm:space-y-5 bg-white dark:bg-[#07101F]">
         <div>
-          <div class="flex items-center gap-1 text-amber-400 text-xs mb-1.5">
+          <div class="flex items-center gap-1 text-amber-400 text-xs mb-1">
             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             <span class="text-slate-400 text-xs ml-1 font-semibold">5.0 Official 5-Star Ocean Club Standard</span>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-4 mb-2">
-            <h3 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white">${act.name}</h3>
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-1.5">
+            <h3 class="text-xl sm:text-2xl font-black font-heading text-slate-900 dark:text-white leading-tight">${act.name}</h3>
             <div class="text-right">
-              <span class="text-3xl font-black text-amber-500 dark:text-amber-400">$${act.price}</span>
-              <span class="text-xs text-slate-400 block">per guest</span>
+              <span class="text-2xl sm:text-3xl font-black text-amber-500 dark:text-amber-400">$${act.price}</span>
+              <span class="text-[11px] text-slate-400 block font-medium">per guest</span>
             </div>
           </div>
-          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">${act.fullDesc}</p>
+          <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">${act.fullDesc}</p>
         </div>
 
         <!-- Quick Specs Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-slate-200 dark:border-slate-800 text-center">
-          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800">
-            <i class="bi bi-clock-fill text-amber-400 text-lg"></i>
-            <span class="text-xs text-slate-400 block mt-1">Duration</span>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 py-2.5 border-y border-slate-200 dark:border-slate-800 text-center">
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800">
+            <i class="bi bi-clock-fill text-amber-400 text-base"></i>
+            <span class="text-[11px] text-slate-400 block mt-0.5">Duration</span>
             <strong class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">${act.duration}</strong>
           </div>
-          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800">
-            <i class="bi bi-lightning-charge-fill text-amber-400 text-lg"></i>
-            <span class="text-xs text-slate-400 block mt-1">Thrill Intensity</span>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800">
+            <i class="bi bi-lightning-charge-fill text-amber-400 text-base"></i>
+            <span class="text-[11px] text-slate-400 block mt-0.5">Thrill Intensity</span>
             <strong class="text-xs sm:text-sm font-bold text-amber-500">${'★'.repeat(act.thrillLevel)} (${act.thrillLevel}/5)</strong>
           </div>
-          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800">
-            <i class="bi bi-person-check-fill text-emerald-400 text-lg"></i>
-            <span class="text-xs text-slate-400 block mt-1">Age Policy</span>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800">
+            <i class="bi bi-person-check-fill text-emerald-400 text-base"></i>
+            <span class="text-[11px] text-slate-400 block mt-0.5">Age Policy</span>
             <strong class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">${act.minAge}</strong>
           </div>
-          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800">
-            <i class="bi bi-people-fill text-indigo-400 text-lg"></i>
-            <span class="text-xs text-slate-400 block mt-1">VIP Group Rate</span>
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800">
+            <i class="bi bi-people-fill text-indigo-400 text-base"></i>
+            <span class="text-[11px] text-slate-400 block mt-0.5">VIP Group Rate</span>
             <strong class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">$${act.priceGroup}/pers</strong>
           </div>
         </div>
 
         <!-- Highlights & Inclusions -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
-            <h5 class="text-xs uppercase tracking-wider font-extrabold text-amber-500 mb-2.5 flex items-center gap-1.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
+            <h5 class="text-[11px] uppercase tracking-wider font-extrabold text-amber-500 mb-2 flex items-center gap-1.5">
               <i class="bi bi-stars"></i> Key Luxury Highlights
             </h5>
-            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
               ${act.highlights.map(h => `<li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-amber-400 font-bold"></i> ${h}</li>`).join('')}
             </ul>
           </div>
-          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
-            <h5 class="text-xs uppercase tracking-wider font-extrabold text-amber-500 mb-2.5 flex items-center gap-1.5">
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
+            <h5 class="text-[11px] uppercase tracking-wider font-extrabold text-amber-500 mb-2 flex items-center gap-1.5">
               <i class="bi bi-shield-check"></i> 5-Star VIP Inclusions
             </h5>
-            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
               ${act.included.map(inc => `<li class="flex items-center gap-2"><i class="bi bi-patch-check-fill text-emerald-400 font-bold"></i> ${inc}</li>`).join('')}
             </ul>
           </div>
         </div>
 
-        <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-yellow-400/5 to-amber-500/10 border border-amber-400/30 text-xs text-slate-700 dark:text-slate-300 flex items-start gap-3">
-          <i class="bi bi-info-circle-fill text-amber-500 text-base flex-shrink-0 mt-0.5"></i>
+        <div class="p-3.5 rounded-xl bg-gradient-to-r from-amber-500/10 via-yellow-400/5 to-amber-500/10 border border-amber-400/30 text-xs text-slate-700 dark:text-slate-300 flex items-start gap-2.5">
+          <i class="bi bi-info-circle-fill text-amber-500 text-sm flex-shrink-0 mt-0.5"></i>
           <div>
             <strong class="text-amber-500">Concierge Requirements & Safety Note:</strong> ${act.requirements}
           </div>
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex flex-col sm:flex-row gap-3 pt-2">
-          <button type="button" onclick="AquaSurge.bookActivity('${act.id}')" class="btn-primary flex-1 py-3.5 text-sm rounded-full">
-            <i class="bi bi-calendar-check"></i> Reserve VIP Experience
+        <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
+          <button type="button" onclick="AquaSurge.bookActivity('${act.id}')" class="btn-primary flex-1 py-3 text-sm rounded-full font-bold flex items-center justify-center gap-2">
+            <i class="bi bi-calendar-check"></i>
+            <span>Reserve VIP Experience</span>
           </button>
-          <button type="button" onclick="AquaSurge.toggleWishlist('${act.id}')" class="btn-secondary py-3.5 text-sm rounded-full">
-            <i class="bi bi-heart"></i> Save to Favorites
+          <button type="button" onclick="AquaSurge.toggleWishlist('${act.id}')" class="btn-secondary py-3 px-5 text-sm rounded-full font-bold flex items-center justify-center gap-2">
+            <i class="bi bi-heart"></i>
+            <span>Save to Favorites</span>
           </button>
         </div>
       </div>
