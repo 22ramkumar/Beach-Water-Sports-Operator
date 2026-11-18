@@ -844,8 +844,9 @@
       </div>
 
       <!-- Bottom Bar -->
-      <div class="pt-8 text-center text-xs text-slate-500 dark:text-slate-400">
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs text-slate-500 dark:text-slate-400">
         <p>© 2026 AquaSurge Luxury Ocean Club. All rights reserved.</p>
+        <button type="button" onclick="AquaSurge.openModal('privacy-policy-modal')" class="hover:text-amber-600 dark:hover:text-amber-300 transition-colors cursor-pointer focus:outline-none">Privacy Policy</button>
       </div>
 
     </div>
@@ -864,6 +865,63 @@
         </button>
       </div>
       <div id="wishlist-items-container"></div>
+    </div>
+  </div>
+
+  <!-- Privacy Policy Modal -->
+  <div id="privacy-policy-modal" class="modal-overlay">
+    <div class="modal-container p-6 sm:p-8">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 border border-amber-500/20 flex items-center justify-center text-lg flex-shrink-0">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">AquaSurge Privacy Policy</h3>
+            <span class="text-[10px] font-crest uppercase tracking-widest text-amber-600 dark:text-amber-400 font-bold">5-Star VIP Maritime Data Protection</span>
+          </div>
+        </div>
+        <button type="button" data-modal-close="privacy-policy-modal" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors" aria-label="Close">
+          <i class="bi bi-x-lg text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        <div class="p-3.5 rounded-2xl bg-amber-500/5 border border-amber-500/20 text-xs">
+          <strong class="text-amber-600 dark:text-amber-400 font-bold block mb-1">VIP Confidentiality Commitment</strong>
+          At AquaSurge Luxury Ocean Club, we hold guest discretion and maritime privacy to the highest global standards. We never sell, monetize, or expose VIP client data, voyage telemetry, or flight logs.
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 dark:text-white mb-1">1. Information We Collect</h4>
+          <p>We collect essential reservation details (guest name, verified phone/WhatsApp, and email), vessel preferences, and onboard telemetry strictly required to coordinate coast guard safety manifests, dispatch harbor master launches, and fulfill concierge requests.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 dark:text-white mb-1">2. Drone Cinematography &amp; Wave Telemetry</h4>
+          <p>Complimentary 4K drone cinematography vouchers and private swell telemetry logs captured during your voyage remain private to your party. Raw footage is delivered securely via encrypted links and automatically expunged after 30 days unless extended by request.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 dark:text-white mb-1">3. Payment &amp; Reservation Encryption</h4>
+          <p>Financial transactions are processed exclusively through PCI-DSS Level 1 certified gateways with end-to-end 256-bit TLS encryption. No raw payment credentials or credit card numbers are ever stored on local marina servers.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 dark:text-white mb-1">4. Your Privacy Rights &amp; Concierge Contact</h4>
+          <p>You may request an immediate summary or deletion of your guest records at any time. For privacy inquiries, contact our Master Harbor Concierge directly at <a href="mailto:concierge@aquasurge-ocean.com" class="text-amber-500 font-bold hover:underline">concierge@aquasurge-ocean.com</a> or visit our Pier 4 VIP Marina Headquarters.</p>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+        <span>Effective 2026 Season • Pier 4 Laguna Bay</span>
+        <button type="button" data-modal-close="privacy-policy-modal" class="btn-primary py-2 px-5 rounded-full text-xs font-bold">
+          Understood
+        </button>
+      </div>
     </div>
   </div>
 
