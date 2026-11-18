@@ -1499,3 +1499,123 @@ img[src*="padi-scuba-dive"],
   color: #FFFFFF !important;
   border-top-color: rgba(212, 175, 55, 0.2) !important;
 }
+
+/* --------------------------------------------------------------------------
+   ACTIVITIES & FLEET SEARCH & CONTROLS TOOLBAR CONTRAST & VISIBILITY FIXES
+   -------------------------------------------------------------------------- */
+#activity-search-input {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+#activity-search-input::placeholder {
+  color: #64748B !important;
+  opacity: 1 !important;
+}
+#activity-search-input:focus {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #F59E0B !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25) !important;
+}
+
+/* Dark Theme Search Input */
+.dark #activity-search-input,
+[data-theme="dark"] #activity-search-input {
+  background-color: #071224 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(212, 175, 55, 0.45) !important;
+}
+.dark #activity-search-input::placeholder,
+[data-theme="dark"] #activity-search-input::placeholder {
+  color: #94A3B8 !important;
+  opacity: 1 !important;
+}
+.dark #activity-search-input:focus,
+[data-theme="dark"] #activity-search-input:focus {
+  background-color: #0C1E3C !important;
+  color: #FFFFFF !important;
+  border-color: #F59E0B !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.35) !important;
+}
+
+/* WebKit autofill prevention so browser autofill never turns background white with white text */
+#activity-search-input:-webkit-autofill,
+#activity-search-input:-webkit-autofill:hover,
+#activity-search-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #0F172A !important;
+  -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset !important;
+  box-shadow: 0 0 0px 1000px #FFFFFF inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.dark #activity-search-input:-webkit-autofill,
+.dark #activity-search-input:-webkit-autofill:hover,
+.dark #activity-search-input:-webkit-autofill:focus,
+[data-theme="dark"] #activity-search-input:-webkit-autofill {
+  -webkit-text-fill-color: #FFFFFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px #071224 inset !important;
+  box-shadow: 0 0 0px 1000px #071224 inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Sort Select styling */
+#activity-sort-select {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+.dark #activity-sort-select,
+[data-theme="dark"] #activity-sort-select {
+  background-color: #071224 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(212, 175, 55, 0.45) !important;
+}
+#activity-sort-select option {
+  background-color: #FFFFFF;
+  color: #0F172A;
+}
+.dark #activity-sort-select option,
+[data-theme="dark"] #activity-sort-select option {
+  background-color: #071224;
+  color: #FFFFFF;
+}
+
+/* Pricing Mode Radio Toggle - High Contrast & Guaranteed Text Visibility */
+.pricing-toggle-label {
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.5rem 0.85rem;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #475569 !important;
+  background: transparent;
+}
+.dark .pricing-toggle-label,
+[data-theme="dark"] .pricing-toggle-label {
+  color: #94A3B8 !important;
+}
+.pricing-toggle-label.active,
+.pricing-toggle-label:has(input:checked) {
+  background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #FDE047 100%) !important;
+  color: #020617 !important;
+  font-weight: 900 !important;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4) !important;
+}
+.pricing-toggle-label.active span,
+.pricing-toggle-label:has(input:checked) span {
+  color: #020617 !important;
+}
+
+/* Category Filter Tabs Active Contrast */
+.category-tab-btn[class*="from-amber-400"] {
+  color: #020617 !important;
+}
+.category-tab-btn[class*="from-amber-400"] * {
+  color: #020617 !important;
+}
+
+

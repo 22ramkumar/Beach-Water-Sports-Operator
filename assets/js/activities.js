@@ -22,6 +22,7 @@
       }
     } catch (e) {}
 
+    updatePricingToggleClasses();
     initUrlParams();
     renderCategoryFilterButtons();
     renderCombos();
@@ -378,11 +379,26 @@
         try {
           sessionStorage.setItem('aquasurge_group_pricing', isGroupPricing ? 'true' : 'false');
         } catch (e) {}
+        updatePricingToggleClasses();
         renderActivities();
         if (window.AquaSurge) {
           window.AquaSurge.showToast(isGroupPricing ? 'Applied VIP Group Rate (15% OFF for 4+ Guests)' : 'Showing standard per person pricing', 'info');
         }
       });
+    });
+  }
+
+  function updatePricingToggleClasses() {
+    const radios = document.querySelectorAll('input[name="pricing-mode"]');
+    radios.forEach(radio => {
+      const label = radio.closest('.pricing-toggle-label');
+      if (label) {
+        if (radio.checked) {
+          label.classList.add('active');
+        } else {
+          label.classList.remove('active');
+        }
+      }
     });
   }
 
