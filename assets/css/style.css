@@ -534,33 +534,108 @@ img {
 /* Mobile Header Uncongested & Elegant Spacing */
 @media (max-width: 639px) {
   .main-header {
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
+    height: 64px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
-  .icon-btn {
-    width: 35px;
-    height: 35px;
-    font-size: 0.88rem;
+  .main-header .max-w-7xl,
+  header.main-header .max-w-7xl {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
-  .mobile-menu-toggle.icon-btn {
-    width: 36px;
-    height: 36px;
+  /* Logo Link & Crest */
+  .main-header a[href*="index.html"] {
+    gap: 8px !important;
+  }
+  /* Ensure the logo crest image box is ALWAYS visible and flexed */
+  .main-header a[href*="index.html"] > div:first-child,
+  .main-header .brand-logo-frame {
+    display: flex !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    flex-shrink: 0 !important;
+  }
+  .main-header .brand-text-title {
+    font-size: 0.90rem !important;
+    letter-spacing: 0.01em !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
   .main-header .brand-text-subtitle {
-    white-space: nowrap !important;
-    font-size: 7.5px !important;
-    letter-spacing: 0.11em !important;
+    display: none !important;
+  }
+  /* Desktop CTA must stay hidden on mobile */
+  .main-header .btn-primary {
+    display: none !important;
+  }
+  /* Action Controls Container - Generous spacing between all buttons */
+  .main-header .gap-1\.5 {
+    gap: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .main-header .icon-btn,
+  .icon-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    font-size: 0.82rem !important;
+    flex-shrink: 0 !important;
+  }
+  /* Ensure Mobile Hamburger Toggle is ALWAYS visible and styled uniformly */
+  .main-header .mobile-menu-toggle,
+  .main-header .mobile-menu-toggle.icon-btn {
+    display: inline-flex !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    font-size: 1.05rem !important;
+    flex-shrink: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* Mobile Container & Card Proportion Normalization (< 640px) */
+  .rounded-3xl {
+    border-radius: 16px !important;
+  }
+  .p-6, .p-7, .p-8, .p-10 {
+    padding: 16px !important;
+  }
+  .gap-12, .gap-10, .gap-8 {
+    gap: 16px !important;
+  }
+  .card-theme {
+    padding: 0 !important;
+    height: auto !important;
+  }
+  .card-theme > .p-4,
+  .card-theme > .p-5,
+  .card-theme > .p-6,
+  .card-theme > .p-8 {
+    padding: 14px 16px !important;
   }
 }
 
-/* Mobile Drawer */
+
+/* Mobile Drawer: Smooth Vertical Scrolling & Overflow Containment */
 .mobile-drawer {
   position: fixed;
   top: 0;
+  bottom: 0;
   right: -100%;
   width: 100%;
   max-width: 380px;
+  height: 100%;
   height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
   background: var(--bg-surface);
   color: var(--text-main);
   z-index: 1100;
@@ -569,6 +644,31 @@ img {
   display: flex;
   flex-direction: column;
   border-left: 1px solid var(--border-luxury-gold);
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-y: contain !important;
+  touch-action: pan-y !important;
+  padding: 20px 16px 36px 16px !important;
+}
+
+.mobile-drawer > * {
+  flex-shrink: 0 !important;
+}
+
+/* Custom Sleek Scrollbar for Mobile Drawer */
+.mobile-drawer::-webkit-scrollbar {
+  width: 4px;
+}
+.mobile-drawer::-webkit-scrollbar-track {
+  background: transparent;
+}
+.mobile-drawer::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 4px;
+}
+.mobile-drawer::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.6);
 }
 
 [dir="rtl"] .mobile-drawer {
@@ -581,6 +681,58 @@ img {
 
 .mobile-drawer.open { right: 0; }
 [dir="rtl"] .mobile-drawer.open { left: 0; }
+
+/* Mobile Slide-out Drawer Typography & Refined Compact Sizing */
+.mobile-drawer .brand-text-title,
+.mobile-drawer .font-heading.text-xl,
+.mobile-drawer .font-heading {
+  font-size: 1.05rem !important;
+  line-height: 1.2 !important;
+}
+
+.mobile-drawer nav {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+  gap: 4px !important;
+}
+
+.mobile-drawer nav a {
+  padding: 8px 12px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  border-radius: 10px !important;
+}
+
+.mobile-drawer nav a span {
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+}
+
+.mobile-drawer nav a i.bi:not(.bi-chevron-right):not(.bi-check2) {
+  font-size: 13.5px !important;
+}
+
+.mobile-drawer nav a i.bi-chevron-right,
+.mobile-drawer nav a i.bi-check2 {
+  font-size: 11px !important;
+}
+
+.mobile-drawer .theme-toggle-btn,
+.mobile-drawer .rtl-toggle-btn {
+  padding: 8px 10px !important;
+  font-size: 11.5px !important;
+}
+
+.mobile-drawer .theme-toggle-btn span,
+.mobile-drawer .rtl-toggle-btn span {
+  font-size: 11.5px !important;
+}
+
+.mobile-drawer .btn-primary {
+  padding: 10px 16px !important;
+  font-size: 13px !important;
+}
 
 .drawer-backdrop {
   position: fixed;
@@ -1183,23 +1335,161 @@ img[src*="padi-scuba-dive"],
 /* --------------------------------------------------------------------------
    11. CUSTOM FORM CONTROLS
    -------------------------------------------------------------------------- */
-.form-input, .form-select, .form-textarea {
+.form-input, .form-select, select, .form-textarea {
   width: 100%;
-  background: var(--bg-surface-subtle);
+  background-color: var(--bg-surface-subtle);
   border: 1.5px solid var(--border-color);
   color: var(--text-main);
   border-radius: var(--radius-md);
   padding: 0.85rem 1.15rem;
   font-size: 0.95rem;
   font-family: inherit;
-  transition: all var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
   outline: none;
 }
 
-.form-input:focus, .form-select:focus, .form-textarea:focus {
-  border-color: var(--gold-primary);
-  background: var(--bg-surface);
-  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
+/* Safe-Zones for Inputs with Leading Icons (Prevent Text & Icon Overlap) */
+.site-footer input[type="email"],
+.newsletter-form input[type="email"],
+.relative > input[type="email"],
+input.pl-9,
+[class*="pl-9"] {
+  padding-left: 38px !important;
+  padding-right: 14px !important;
+}
+
+#activity-search-input,
+input.pl-11,
+[class*="pl-11"] {
+  padding-left: 44px !important;
+  padding-right: 14px !important;
+}
+
+[dir="rtl"] .site-footer input[type="email"],
+[dir="rtl"] .newsletter-form input[type="email"],
+[dir="rtl"] .relative > input[type="email"],
+[dir="rtl"] input.pl-9,
+[dir="rtl"] [class*="pl-9"] {
+  padding-right: 38px !important;
+  padding-left: 14px !important;
+}
+
+[dir="rtl"] .site-footer .relative > i.bi-envelope,
+[dir="rtl"] .newsletter-form .relative > i.bi-envelope,
+[dir="rtl"] .relative > i.bi-envelope {
+  left: auto !important;
+  right: 14px !important;
+}
+
+[dir="rtl"] #activity-search-input,
+[dir="rtl"] input.pl-11,
+[dir="rtl"] [class*="pl-11"] {
+  padding-right: 44px !important;
+  padding-left: 14px !important;
+}
+
+[dir="rtl"] .relative > i.bi-search {
+  left: auto !important;
+  right: 16px !important;
+}
+
+/* Universal High-Visibility Dropdown Arrow for ALL Select Elements */
+select,
+.form-select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23D97706' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1.15rem center !important;
+  background-size: 18px 18px !important;
+  padding-left: 1.15rem !important;
+  padding-right: 2.75rem !important;
+  text-align: left !important;
+  text-align-last: left !important;
+  -webkit-text-align-last: left !important;
+  -moz-text-align-last: left !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer !important;
+}
+
+/* Luminous Gold Chevron on Dark Surfaces & Dark Theme */
+[data-theme="dark"] select,
+.dark select,
+[data-theme="dark"] .form-select,
+.dark .form-select,
+select.text-white,
+.luxury-hero-card select,
+select[class*="bg-slate-900"],
+select[class*="bg-slate-800"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FBBF24' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+/* RTL Support for Dropdown Arrows */
+[dir="rtl"] select,
+[dir="rtl"] .form-select {
+  background-position: left 1.15rem center !important;
+  padding-right: 1.15rem !important;
+  padding-left: 2.75rem !important;
+  text-align: right !important;
+  text-align-last: right !important;
+  -webkit-text-align-last: right !important;
+  -moz-text-align-last: right !important;
+}
+
+.form-select option,
+select option,
+.form-select optgroup,
+select optgroup {
+  text-align: left !important;
+  text-align-last: left !important;
+  -webkit-text-align-last: left !important;
+  background-color: #FFFFFF;
+  color: #0F172A;
+}
+
+[dir="rtl"] .form-select option,
+[dir="rtl"] select option,
+[dir="rtl"] .form-select optgroup,
+[dir="rtl"] select optgroup {
+  text-align: right !important;
+  text-align-last: right !important;
+  -webkit-text-align-last: right !important;
+}
+
+.dark select option,
+.dark .form-select option,
+[data-theme="dark"] select option,
+[data-theme="dark"] .form-select option,
+.dark select optgroup,
+.dark .form-select optgroup,
+[data-theme="dark"] select optgroup,
+[data-theme="dark"] .form-select optgroup {
+  background-color: #071224;
+  color: #FFFFFF;
+}
+
+.form-input:focus, .form-select:focus, select:focus, .form-textarea:focus {
+  border-color: var(--gold-primary) !important;
+  background-color: var(--bg-surface);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.22) !important;
+}
+
+/* Prevent Dark Selects & Hero Kiosk Inputs from Turning White on Focus */
+.dark select:focus,
+[data-theme="dark"] select:focus,
+.dark .form-select:focus,
+[data-theme="dark"] .form-select:focus,
+select.text-white:focus,
+.form-select.text-white:focus,
+.luxury-hero-card select:focus,
+.luxury-hero-card .form-select:focus {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+  border-color: #F59E0B !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.35) !important;
 }
 
 .form-label {
@@ -1279,13 +1569,15 @@ img[src*="padi-scuba-dive"],
   height: 28px;
   border-radius: 50%;
   background: var(--bg-surface-subtle);
+  color: var(--gold-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform var(--transition-fast), background-color var(--transition-fast);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
   flex-shrink: 0;
   border: 1px solid var(--border-color);
-  font-size: 0.75rem;
+  font-size: 0.82rem;
+  font-weight: bold;
 }
 
 .faq-accordion-item.open .faq-icon,
@@ -1617,5 +1909,784 @@ img[src*="padi-scuba-dive"],
 .category-tab-btn[class*="from-amber-400"] * {
   color: #020617 !important;
 }
+
+/* ==========================================================================
+   16. MOBILE S (360PX) & SMALL SCREENS RESPONSIVE ENGINE
+   Strictly engineered for Mobile S (360px), 375px, and 414px viewports.
+   ========================================================================== */
+
+/* 1. Universal Box-Sizing & Viewport Boundary Guarantee */
+*, *::before, *::after {
+  box-sizing: border-box !important;
+}
+
+html, body {
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 2. Media, Images, Tables & Container Constraints */
+img, video, iframe, embed, object, svg, canvas {
+  max-width: 100% !important;
+  height: auto;
+}
+
+table {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto;
+  display: block;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 3. Universal Word-Wrap & Overflow-Wrap for Long Words, Emails, and URLs */
+p, span, a, li, h1, h2, h3, h4, h5, h6, input, select, textarea, label, td, th {
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+a[href^="mailto:"],
+a[href^="tel:"],
+a[href^="http:"],
+a[href^="https:"],
+.break-words-mobile {
+  word-break: break-all !important;
+}
+
+/* --------------------------------------------------------------------------
+   SMALL SCREEN RESPONSIVE SPECIFICATION (<= 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  /* Typography Scaling with clamp() per requirements */
+  h1, .text-4xl, .text-5xl, .text-6xl, .text-7xl {
+    font-size: clamp(24px, 7vw, 32px) !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  h2, .text-3xl {
+    font-size: clamp(20px, 6vw, 26px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.015em !important;
+  }
+
+  h3, .text-2xl {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.3 !important;
+  }
+
+  h4, .text-xl {
+    font-size: clamp(15px, 4.5vw, 18px) !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Body text: 14-16px, line-height 1.5 per requirements */
+  body, p, li {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Text Alignment: Clean consistent typography */
+  p, li, .text-start {
+    text-align: left;
+  }
+
+  [dir="rtl"] p,
+  [dir="rtl"] li {
+    text-align: right;
+  }
+
+  /* Universal descendant rule for intentional center alignment */
+  .text-center,
+  .text-center p,
+  .text-center span,
+  .text-center h1,
+  .text-center h2,
+  .text-center h3,
+  .text-center h4,
+  .section-header,
+  .section-header p,
+  .page-header-banner .text-center p,
+  .hero-wrapper .text-center p,
+  .site-footer .text-center,
+  .site-footer .text-center p,
+  .badge-vip,
+  .badge-gold,
+  .badge-emerald,
+  .badge,
+  .stat-counter,
+  .counter-val {
+    text-align: center !important;
+  }
+
+  /* Preserve explicit left alignment when nested inside centered containers */
+  .text-left,
+  .text-left p,
+  .text-left h1,
+  .text-left h2,
+  .text-left h3,
+  .text-left span {
+    text-align: left !important;
+  }
+
+  /* Universal 16px Horizontal Safe-Zone & Width Fit on All Mobile Containers */
+  .container,
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl,
+  .max-w-2xl,
+  .max-w-xl,
+  .max-w-lg,
+  [class*="max-w-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  section > .max-w-7xl,
+  section > .max-w-6xl,
+  section > .max-w-5xl,
+  section > .max-w-4xl,
+  section > .max-w-3xl,
+  section > .container,
+  .site-header .max-w-7xl,
+  .site-footer .max-w-7xl {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Prevent compounding padding on nested max-w width-constraint wrappers */
+  .max-w-7xl [class*="max-w-"]:not(.luxury-hero-card):not(.card-theme):not(.modal-card):not(.modal-container):not([class*="p-"]),
+  .max-w-6xl [class*="max-w-"]:not(.luxury-hero-card):not(.card-theme):not(.modal-card):not(.modal-container):not([class*="p-"]),
+  .max-w-5xl [class*="max-w-"]:not(.luxury-hero-card):not(.card-theme):not(.modal-card):not(.modal-container):not([class*="p-"]),
+  .max-w-4xl [class*="max-w-"]:not(.luxury-hero-card):not(.card-theme):not(.modal-card):not(.modal-container):not([class*="p-"]),
+  .container [class*="max-w-"]:not(.luxury-hero-card):not(.card-theme):not(.modal-card):not(.modal-container):not([class*="p-"]),
+  .max-w-7xl .max-w-4xl,
+  .max-w-7xl .max-w-3xl,
+  .max-w-7xl .max-w-2xl,
+  .max-w-7xl .max-w-xl,
+  .max-w-6xl .max-w-4xl,
+  .max-w-6xl .max-w-3xl,
+  .max-w-6xl .max-w-2xl,
+  .max-w-6xl .max-w-xl,
+  .max-w-5xl .max-w-2xl,
+  .max-w-5xl .max-w-xl {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Normalize Oversized Card & Panel Padding (p-6, p-7, p-8, p-10) to sleek 16px on Mobile */
+  .p-6,
+  .p-7,
+  .p-8,
+  .p-10,
+  #booking-portal-card,
+  .glass-panel {
+    padding: 16px !important;
+  }
+
+  /* Pier 4 VIP Kiosk: Balanced Inner Padding on Mobile (No Sticking to Corners/Borders) */
+  .luxury-hero-card,
+  .max-w-7xl .luxury-hero-card,
+  .hero-wrapper .luxury-hero-card,
+  [class*="max-w-"] .luxury-hero-card {
+    padding: 20px 18px 18px 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Compact Horizontal Padding on Containers */
+  .px-6,
+  .px-8,
+  .px-10 {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Refine oversized 24px border-radius to a sleek, modern 16px on mobile */
+  .rounded-3xl {
+    border-radius: 16px !important;
+  }
+
+  .rounded-2xl {
+    border-radius: 14px !important;
+  }
+
+  /* Vertical Spacing Scale on Small Screens: 8px / 16px / 24px / 28px */
+  section {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+
+  .hero-wrapper,
+  .page-header-banner {
+    padding-top: calc(var(--navbar-height, 64px) + 20px) !important;
+    padding-bottom: 30px !important;
+    min-height: auto !important;
+  }
+
+  /* Compact Vertical Margins & Section Header Spacing */
+  .mb-20, .mb-16, .mb-14, .mb-12 {
+    margin-bottom: 18px !important;
+  }
+
+  .mt-20, .mt-16, .mt-14, .mt-12 {
+    margin-top: 18px !important;
+  }
+
+  .pt-20, .pt-16, .pt-14, .pt-12 {
+    padding-top: 20px !important;
+  }
+
+  .pb-20, .pb-16, .pb-14, .pb-12 {
+    padding-bottom: 20px !important;
+  }
+
+  .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 14px !important;
+  }
+
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 18px !important;
+  }
+
+  /* Proportional Mobile Grid Gaps (Prevent oversized gaps between stacked containers) */
+  .gap-12,
+  .gap-10,
+  .gap-8 {
+    gap: 16px !important;
+  }
+
+  .gap-6,
+  .gap-7 {
+    gap: 14px !important;
+  }
+
+  /* Cards Layout: Sleek, unbloated card layout with edge-to-edge images and clean body padding */
+  .card-theme {
+    padding: 0 !important;
+    border-radius: 16px !important;
+    height: auto !important;
+  }
+
+  .card-theme > .p-4,
+  .card-theme > .p-5,
+  .card-theme > .p-6,
+  .card-theme > .p-8,
+  .card-theme > div:last-child {
+    padding: 14px 16px !important;
+  }
+
+  /* Compact Stat Counter Cards on Mobile (Remove tall 165px/180px fixed heights) */
+  [class*="min-h-[165px]"],
+  [class*="min-h-[180px]"] {
+    min-height: auto !important;
+    padding: 12px 10px !important;
+  }
+
+  [class*="min-h-[2.2rem]"] {
+    min-height: auto !important;
+  }
+
+  /* Comfortable Inner Padding for Form Fields (minimum 12px) & min-height 44px */
+  .form-input,
+  .form-textarea,
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea {
+    min-height: 44px !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Safe-Zones for Inputs with Leading Icons (Prevent Text & Icon Overlap on Small Screens) */
+  .site-footer input[type="email"],
+  .newsletter-form input[type="email"],
+  .relative > input[type="email"],
+  input.pl-9,
+  [class*="pl-9"] {
+    padding-left: 38px !important;
+    padding-right: 14px !important;
+  }
+
+  #activity-search-input,
+  input.pl-11,
+  [class*="pl-11"] {
+    padding-left: 44px !important;
+    padding-right: 14px !important;
+  }
+
+  [dir="rtl"] .site-footer input[type="email"],
+  [dir="rtl"] .newsletter-form input[type="email"],
+  [dir="rtl"] .relative > input[type="email"],
+  [dir="rtl"] input.pl-9,
+  [dir="rtl"] [class*="pl-9"] {
+    padding-right: 38px !important;
+    padding-left: 14px !important;
+  }
+
+  [dir="rtl"] .site-footer .relative > i.bi-envelope,
+  [dir="rtl"] .newsletter-form .relative > i.bi-envelope,
+  [dir="rtl"] .relative > i.bi-envelope {
+    left: auto !important;
+    right: 14px !important;
+  }
+
+  [dir="rtl"] #activity-search-input,
+  [dir="rtl"] input.pl-11,
+  [dir="rtl"] [class*="pl-11"] {
+    padding-right: 44px !important;
+    padding-left: 14px !important;
+  }
+
+  [dir="rtl"] .relative > i.bi-search {
+    left: auto !important;
+    right: 16px !important;
+  }
+
+  /* Select Elements: Preserve Safe Zone for Dropdown Arrow on Small Screens */
+  select,
+  .form-select {
+    min-height: 44px !important;
+    padding: 10px 2.5rem 10px 1.15rem !important;
+    font-size: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-position: right 0.85rem center !important;
+    background-size: 16px 16px !important;
+    text-align: left !important;
+    text-align-last: left !important;
+    -webkit-text-align-last: left !important;
+    -moz-text-align-last: left !important;
+  }
+
+  [dir="rtl"] select,
+  [dir="rtl"] .form-select {
+    padding: 10px 1.15rem 10px 2.5rem !important;
+    background-position: left 0.85rem center !important;
+    text-align: right !important;
+    text-align-last: right !important;
+    -webkit-text-align-last: right !important;
+    -moz-text-align-last: right !important;
+  }
+
+  /* Keep party stepper number display compact */
+  input[type="number"]#booking-adults,
+  input[type="number"]#booking-children {
+    width: 4rem !important;
+    min-height: 38px !important;
+    padding: 0 !important;
+  }
+
+  /* Buttons & Tap Targets Minimum 44px Height & Comfortable Padding (min 12px) */
+  .btn-primary:not(.hidden),
+  .btn-secondary:not(.hidden),
+  .btn-gold:not(.hidden),
+  .btn-vibrant:not(.hidden),
+  .btn-outline:not(.hidden),
+  .btn-outline-ocean:not(.hidden),
+  button[type="submit"]:not(.hidden) {
+    min-height: 44px !important;
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Strict guarantee: hidden elements stay hidden on mobile */
+  .hidden,
+  [hidden],
+  .main-header .btn-primary {
+    display: none !important;
+  }
+
+  /* Category Filter Tabs: Balanced Centering & Wrap on Mobile */
+  #category-filter-tabs {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .category-tab-btn {
+    min-height: 44px !important;
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    flex: 0 1 auto !important;
+  }
+
+  /* Pricing Mode Toggle: Equal 50/50 Split on Mobile */
+  .pricing-toggle-label {
+    min-height: 44px !important;
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    flex: 1 1 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Header Brand & Buttons: Clean Alignment & Generous Spacing across all Phones */
+  .main-header .brand-text-subtitle {
+    display: none !important;
+  }
+
+  .main-header .brand-text-title {
+    font-size: 0.90rem !important;
+    letter-spacing: 0.01em !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .main-header .gap-1\.5 {
+    gap: 8px !important;
+  }
+
+  .main-header .icon-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .main-header .mobile-menu-toggle,
+  .main-header .mobile-menu-toggle.icon-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    font-size: 1.05rem !important;
+    margin-left: 0 !important;
+  }
+
+  /* Card Content Heights: Natural, compact fit to prevent oversized card containers */
+  .card-theme h3 {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .card-theme p {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* Pseudo-element Touch Target Expander for Small Icon Buttons (44px min tap area) */
+  .icon-btn,
+  .wishlist-toggle-btn,
+  .drawer-close-btn,
+  [data-modal-close],
+  .party-btn {
+    position: relative !important;
+    touch-action: manipulation;
+  }
+
+  .icon-btn::after,
+  .wishlist-toggle-btn::after,
+  .drawer-close-btn::after,
+  [data-modal-close]::after,
+  .party-btn::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    z-index: 1;
+  }
+
+  /* Modals on Small Screens */
+  .modal-overlay {
+    padding: 12px !important;
+  }
+
+  .modal-container,
+  .modal-card {
+    width: 100% !important;
+    max-width: calc(100vw - 24px) !important;
+    margin: 8px auto !important;
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  /* Toast Notification Container */
+  #toast-container {
+    bottom: 12px !important;
+    left: 12px !important;
+    right: 12px !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  .toast-item {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px 14px !important;
+  }
+}
+
+/* Pier 4 VIP Kiosk Card: Harmonious Alignment, Proportions & Button Sizing */
+.luxury-hero-card,
+.max-w-7xl .luxury-hero-card,
+.hero-wrapper .luxury-hero-card,
+[class*="max-w-"] .luxury-hero-card {
+  max-width: 390px;
+  padding: 22px 20px 20px 20px !important;
+  box-sizing: border-box !important;
+}
+
+.luxury-hero-card select,
+.luxury-hero-card .form-select {
+  height: 42px !important;
+  min-height: 42px !important;
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(212, 175, 55, 0.4) !important;
+  padding: 8px 2rem 8px 12px !important;
+  font-size: 12.5px !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+  text-align-last: left !important;
+  -webkit-text-align-last: left !important;
+  -moz-text-align-last: left !important;
+  border-radius: 12px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-shadow: none !important;
+}
+
+.luxury-hero-card select:focus,
+.luxury-hero-card .form-select:focus {
+  background-color: #0B1528 !important;
+  color: #FFFFFF !important;
+  border-color: #F59E0B !important;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.4) !important;
+  outline: none !important;
+}
+
+.luxury-hero-card select option,
+.luxury-hero-card .form-select option {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+  text-align: left !important;
+}
+
+[dir="rtl"] .luxury-hero-card select,
+[dir="rtl"] .luxury-hero-card .form-select {
+  padding: 8px 12px 8px 2rem !important;
+  text-align: right !important;
+  text-align-last: right !important;
+  -webkit-text-align-last: right !important;
+  -moz-text-align-last: right !important;
+}
+
+[dir="rtl"] .luxury-hero-card select option,
+[dir="rtl"] .luxury-hero-card .form-select option {
+  text-align: right !important;
+  text-align-last: right !important;
+}
+
+.luxury-hero-card button[type="submit"] {
+  font-size: 13px !important;
+  padding: 10px 14px !important;
+  white-space: nowrap !important;
+  min-height: 44px !important;
+  width: 100% !important;
+}
+
+/* --------------------------------------------------------------------------
+   STRICT MOBILE S SPECIFICATION (<= 360px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  /* 1. Stack Multi-Column Layouts into Single Column per Requirement 5 */
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4,
+  .grid-cols-5,
+  [class*="grid-cols-2"],
+  [class*="grid-cols-3"],
+  [class*="grid-cols-4"],
+  [class*="grid-cols-5"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stack Card Action Buttons (Details / Book VIP) into Single Column */
+  .grid.grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .grid.grid-cols-2 > button,
+  .grid.grid-cols-2 > a {
+    width: 100% !important;
+    min-height: 44px !important;
+  }
+
+  /* Card action buttons height overrides */
+  .card-theme .grid button,
+  .card-theme .grid a {
+    height: auto !important;
+    min-height: 44px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Convert Column Separator Borders into Row Dividers */
+  .grid-cols-2 .border-l,
+  .grid-cols-4 .border-l,
+  [class*="grid-cols-"] [class*="border-l"] {
+    border-left-width: 0 !important;
+    border-top-width: 1px !important;
+  }
+
+  .divide-y > :not([hidden]) ~ :not([hidden]),
+  .divide-x > :not([hidden]) ~ :not([hidden]) {
+    border-left-width: 0 !important;
+    border-top-width: 1px !important;
+  }
+
+  /* 2. Responsive Media and Full-Width Containers (No overflow at 360px) */
+  img,
+  video,
+  iframe,
+  embed,
+  object,
+  .container,
+  .modal-card,
+  .modal-container,
+  .luxury-hero-card,
+  .card-theme {
+    max-width: 100% !important;
+  }
+
+  .luxury-hero-card,
+  .max-w-7xl .luxury-hero-card,
+  .hero-wrapper .luxury-hero-card,
+  [class*="max-w-"] .luxury-hero-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 18px 14px 14px 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Maintain 2-column paired layout for Guests & Slot in Kiosk on Mobile S */
+  .luxury-hero-card .grid-cols-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .luxury-hero-card select,
+  .luxury-hero-card .form-select {
+    height: 42px !important;
+    min-height: 42px !important;
+    background-color: #0F172A !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(212, 175, 55, 0.4) !important;
+    padding: 8px 1.75rem 8px 9px !important;
+    font-size: 12px !important;
+    text-align: left !important;
+    text-align-last: left !important;
+    -webkit-text-align-last: left !important;
+    -moz-text-align-last: left !important;
+  }
+
+  .luxury-hero-card select:focus,
+  .luxury-hero-card .form-select:focus {
+    background-color: #0B1528 !important;
+    color: #FFFFFF !important;
+    border-color: #F59E0B !important;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.4) !important;
+  }
+
+  [dir="rtl"] .luxury-hero-card select,
+  [dir="rtl"] .luxury-hero-card .form-select {
+    padding: 8px 9px 8px 1.75rem !important;
+    text-align: right !important;
+    text-align-last: right !important;
+    -webkit-text-align-last: right !important;
+    -moz-text-align-last: right !important;
+  }
+
+  .luxury-hero-card button[type="submit"] {
+    font-size: 12.5px !important;
+    padding: 10px 10px !important;
+    white-space: nowrap !important;
+    min-height: 44px !important;
+  }
+
+  /* Header Optimization on <= 360px: Generous Spacing Between All Elements */
+  .main-header .max-w-7xl,
+  header.main-header .max-w-7xl {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .main-header a[href*="index.html"] {
+    gap: 7px !important;
+  }
+
+  .main-header a[href*="index.html"] > div:first-child,
+  .main-header .brand-logo-frame {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+  }
+
+  .main-header .brand-text-title {
+    font-size: 0.88rem !important;
+  }
+
+  .main-header .gap-1\.5 {
+    gap: 7px !important;
+  }
+
+  .main-header .icon-btn,
+  .icon-btn {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    font-size: 0.80rem !important;
+  }
+
+  .main-header .mobile-menu-toggle,
+  .main-header .mobile-menu-toggle.icon-btn {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    font-size: 1.0rem !important;
+    margin-left: 0 !important;
+  }
+
+  /* Mobile Drawer Full-Width Fit & Scroll Protection */
+  .mobile-drawer {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 16px 14px 32px 14px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+  }
+
+  /* Deactivate Glowing Orbs on Mobile S (Avoids Any Bleed & Boosts Performance) */
+  .glow-orb {
+    display: none !important;
+  }
+}
+
 
 

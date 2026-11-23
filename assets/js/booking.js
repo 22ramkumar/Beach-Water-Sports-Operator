@@ -87,16 +87,17 @@
     let html = '<option value="" disabled>-- Select Your Luxury Watersport Experience --</option>';
 
     // Group 1: Individual Activities
-    html += '<optgroup label="2026 Ultra-Luxury Watersports Fleet">';
+    html += '<optgroup label="── 2026 Ultra-Luxury Fleet ──">';
     activities.forEach(act => {
-      html += `<option value="${act.id}" data-price="${act.price}" data-name="${act.name}">${act.name} ($${act.price}/person • ${act.duration})</option>`;
+      html += `<option value="${act.id}" data-price="${act.price}" data-name="${act.name}">${act.name} ($${act.price} • ${act.duration})</option>`;
     });
     html += '</optgroup>';
 
     // Group 2: Combo Packages
-    html += '<optgroup label="VIP Curated Multi-Experience Packages">';
+    html += '<optgroup label="── VIP Curated Experience Packages ──">';
     combos.forEach(combo => {
-      html += `<option value="${combo.id}" data-price="${combo.price}" data-name="${combo.name}">${combo.name} ($${combo.price} • ${combo.savings})</option>`;
+      const savingsShort = combo.savings ? combo.savings.replace(' (', ' • ').replace(')', '').replace(' OFF', '') : '';
+      html += `<option value="${combo.id}" data-price="${combo.price}" data-name="${combo.name}">${combo.name} ($${combo.price} • ${savingsShort})</option>`;
     });
     html += '</optgroup>';
 
